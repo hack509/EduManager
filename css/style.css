@@ -1058,3 +1058,163 @@ a { text-decoration: none; }
   .whatsapp-btn { bottom: 76px; right: 20px; width: 48px; height: 48px; font-size: 22px; }
   .back-top { bottom: 24px; right: 20px; width: 40px; height: 40px; font-size: 14px; }
 }
+
+/* ════════════════════════════════ VIDEO MODAL ══ */
+.demo-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 10000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+}
+
+.demo-modal__backdrop {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(15, 23, 42, 0.75);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  opacity: 0;
+  transition: opacity 0.35s ease;
+}
+
+.demo-modal__container {
+  position: relative;
+  width: 100%;
+  max-width: 960px;
+  background: rgba(30, 41, 59, 0.7);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 20px;
+  padding: 32px;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+  transform: translateY(30px) scale(0.95);
+  opacity: 0;
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.35s ease;
+  z-index: 1;
+}
+
+.demo-modal__close {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: #fff;
+  font-size: 16px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: var(--transition);
+}
+
+.demo-modal__close:hover {
+  background: rgba(239, 68, 68, 0.2);
+  border-color: rgba(239, 68, 68, 0.4);
+  color: #ef4444;
+  transform: rotate(90deg);
+}
+
+.demo-modal__header {
+  margin-bottom: 24px;
+  padding-right: 48px;
+}
+
+.demo-modal__badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(99, 102, 241, 0.15);
+  color: #818cf8;
+  border: 1px solid rgba(99, 102, 241, 0.3);
+  padding: 4px 12px;
+  border-radius: 9999px;
+  font-size: 12px;
+  font-weight: 600;
+  margin-bottom: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.demo-modal__title {
+  font-size: 24px;
+  font-weight: 800;
+  color: #fff;
+  margin: 0 0 6px 0;
+  letter-spacing: -0.5px;
+}
+
+.demo-modal__sub {
+  font-size: 14px;
+  color: var(--slate-400);
+  margin: 0;
+}
+
+.demo-modal__video-wrap {
+  position: relative;
+  width: 100%;
+  padding-top: 56.25%; /* 16:9 Aspect Ratio */
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  background: #000;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.demo-modal__video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+/* Modal Open State Animations */
+.demo-modal--visible .demo-modal__backdrop {
+  opacity: 1;
+}
+
+.demo-modal--visible .demo-modal__container {
+  transform: translateY(0) scale(1);
+  opacity: 1;
+}
+
+@media (max-width: 768px) {
+  .demo-modal {
+    padding: 16px;
+  }
+  .demo-modal__container {
+    padding: 20px;
+    border-radius: 16px;
+  }
+  .demo-modal__title {
+    font-size: 20px;
+  }
+  .demo-modal__header {
+    margin-bottom: 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  .demo-modal { padding: 10px; }
+  .demo-modal__container { padding: 14px; border-radius: 14px; }
+  .demo-modal__title { font-size: 17px; }
+  .demo-modal__sub { display: none; }
+  .demo-modal__header { margin-bottom: 10px; padding-right: 40px; }
+  .demo-modal__close { top: 14px; right: 14px; width: 34px; height: 34px; font-size: 14px; }
+}
+

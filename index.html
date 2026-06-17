@@ -75,9 +75,9 @@
           <a href="#contact" class="btn btn--primary btn--lg">
             <i class="fas fa-rocket"></i> Commencer gratuitement
           </a>
-          <a href="#apercu" class="btn btn--outline-light btn--lg">
+          <button id="openDemoModal" class="btn btn--outline-light btn--lg" type="button">
             <i class="fas fa-play-circle"></i> Voir la démo
-          </a>
+          </button>
         </div>
 
         <div class="hero__stats">
@@ -801,12 +801,74 @@
     <span class="whatsapp-btn__tooltip">Chattez avec nous</span>
   </a>
 
+  <!-- ═══════════════════════════════════════ VIDEO MODAL ══ -->
+  <div id="demoModal" class="demo-modal" role="dialog" aria-modal="true" aria-label="Démo EduManager" style="display:none;">
+    <div class="demo-modal__backdrop"></div>
+    <div class="demo-modal__container">
+      <button class="demo-modal__close" id="closeDemoModal" aria-label="Fermer la démo">
+        <i class="fas fa-times"></i>
+      </button>
+      <div class="demo-modal__header">
+        <div class="demo-modal__badge">
+          <i class="fas fa-play-circle"></i> Démo live
+        </div>
+        <h2 class="demo-modal__title">EduManager en action</h2>
+        <p class="demo-modal__sub">Découvrez comment EduManager simplifie la gestion de votre établissement</p>
+      </div>
+      <div class="demo-modal__video-wrap">
+        <video
+          id="demoVideo"
+          class="demo-modal__video"
+          controls
+          preload="metadata"
+          playsinline
+        >
+          <source src="mockups/edumanager_demo.mp4" type="video/mp4" />
+          Votre navigateur ne supporte pas la lecture vidéo.
+        </video>
+      </div>
+    </div>
+  </div>
+
   <!-- Back to top -->
   <button class="back-top" id="backTop" aria-label="Retour en haut">
     <i class="fas fa-arrow-up"></i>
   </button>
 
   <script src="js/main.js"></script>
+  <script>
+    (function () {
+      const modal   = document.getElementById('demoModal');
+      const video   = document.getElementById('demoVideo');
+      const openBtn = document.getElementById('openDemoModal');
+      const closeBtn= document.getElementById('closeDemoModal');
+      const backdrop= modal.querySelector('.demo-modal__backdrop');
+
+      function openModal() {
+        modal.style.display = 'flex';
+        document.body.style.overflow = 'hidden';
+        requestAnimationFrame(() => modal.classList.add('demo-modal--visible'));
+        video.play().catch(() => {});
+      }
+
+      function closeModal() {
+        modal.classList.remove('demo-modal--visible');
+        video.pause();
+        video.currentTime = 0;
+        setTimeout(() => {
+          modal.style.display = 'none';
+          document.body.style.overflow = '';
+        }, 350);
+      }
+
+      openBtn.addEventListener('click', openModal);
+      closeBtn.addEventListener('click', closeModal);
+      backdrop.addEventListener('click', closeModal);
+      document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && modal.classList.contains('demo-modal--visible')) closeModal();
+      });
+    })();
+  </script>
 </body>
 
 </html>

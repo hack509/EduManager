@@ -1,0 +1,656 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=1280"/>
+<title>EduManager Demo</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Inter',sans-serif;}
+body{width:1280px;height:720px;overflow:hidden;background:#0f172a;}
+
+/* ── Scene system ── */
+.scene{position:absolute;inset:0;opacity:0;pointer-events:none;transition:opacity .6s ease;}
+.scene.active{opacity:1;pointer-events:auto;}
+
+/* ═══════════════ SCENE 1 — INTRO ═══════════════ */
+#s1{background:linear-gradient(135deg,#1e1b4b 0%,#312e81 50%,#4f46e5 100%);
+    display:flex;align-items:center;justify-content:center;flex-direction:column;}
+.intro-logo{width:90px;height:90px;background:rgba(255,255,255,.12);border-radius:24px;
+  display:flex;align-items:center;justify-content:center;margin-bottom:28px;
+  border:2px solid rgba(255,255,255,.2);
+  animation:popIn .8s cubic-bezier(.34,1.56,.64,1) forwards;opacity:0;}
+.intro-logo i{font-size:44px;color:#fbbf24;}
+.intro-title{font-size:58px;font-weight:900;color:#fff;letter-spacing:-2px;text-align:center;
+  animation:slideUp .7s .4s ease forwards;opacity:0;}
+.intro-title span{background:linear-gradient(135deg,#fbbf24,#f97316);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.intro-sub{font-size:20px;color:rgba(255,255,255,.6);margin-top:14px;
+  animation:slideUp .7s .7s ease forwards;opacity:0;text-align:center;}
+.intro-badge{margin-top:32px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);
+  border-radius:100px;padding:10px 24px;color:rgba(255,255,255,.8);font-size:14px;font-weight:600;
+  display:flex;align-items:center;gap:8px;animation:slideUp .7s 1s ease forwards;opacity:0;}
+.intro-badge i{color:#fbbf24;}
+
+/* ═══════════════ SCENE 2 — DASHBOARD ═══════════════ */
+#s2{background:#f1f5f9;display:flex;flex-direction:column;}
+.s2-topbar{background:#0f172a;height:52px;display:flex;align-items:center;padding:0 20px;
+  gap:12px;flex-shrink:0;}
+.s2-logo-mini{display:flex;align-items:center;gap:10px;}
+.s2-logo-mini .icon{width:34px;height:34px;background:linear-gradient(135deg,#6366f1,#4f46e5);
+  border-radius:8px;display:flex;align-items:center;justify-content:center;color:#fff;font-size:16px;}
+.s2-logo-mini span{color:#fff;font-size:14px;font-weight:800;}
+.s2-body{display:flex;flex:1;overflow:hidden;}
+.s2-sidebar{width:200px;background:#1e293b;display:flex;flex-direction:column;padding:16px 12px;flex-shrink:0;}
+.s2-nav-item{display:flex;align-items:center;gap:9px;padding:8px 10px;border-radius:7px;
+  margin-bottom:3px;font-size:12px;font-weight:500;color:#94a3b8;cursor:pointer;}
+.s2-nav-item.active{background:rgba(99,102,241,.25);color:#a5b4fc;border:1px solid rgba(99,102,241,.2);}
+.s2-nav-item i{width:14px;text-align:center;font-size:12px;}
+.s2-main{flex:1;padding:22px;overflow:hidden;}
+.s2-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:18px;}
+.s2-title{font-size:20px;font-weight:800;color:#0f172a;}
+.s2-date{font-size:11px;color:#94a3b8;}
+.kpi-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:10px;margin-bottom:16px;}
+.kpi{background:#fff;border-radius:10px;padding:14px;border:1px solid #e2e8f0;
+  border-left-width:4px;animation:slideUp .5s ease forwards;opacity:0;}
+.kpi-num{font-size:24px;font-weight:900;color:#0f172a;line-height:1;}
+.kpi-label{font-size:10px;color:#94a3b8;margin-top:4px;}
+.s2-grid{display:grid;grid-template-columns:2fr 1fr;gap:12px;}
+.chart-card{background:#fff;border-radius:10px;padding:16px;border:1px solid #e2e8f0;}
+.chart-title{font-size:12px;font-weight:700;color:#0f172a;margin-bottom:12px;}
+.bars{display:flex;align-items:flex-end;gap:6px;height:90px;}
+.bar-wrap{flex:1;display:flex;flex-direction:column;align-items:center;gap:3px;}
+.bar{width:100%;border-radius:3px 3px 0 0;transition:height .8s ease;}
+.bar-lbl{font-size:8px;color:#94a3b8;}
+.quick-card{background:#fff;border-radius:10px;padding:14px;border:1px solid #e2e8f0;}
+.quick-title{font-size:12px;font-weight:700;color:#0f172a;margin-bottom:10px;}
+.quick-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;}
+.quick-btn{border-radius:8px;padding:10px 8px;text-align:center;cursor:pointer;font-size:10px;font-weight:600;}
+.quick-btn i{display:block;font-size:16px;margin-bottom:4px;}
+
+/* ═══════════════ SCENE 3 — STUDENTS ═══════════════ */
+#s3{background:#f1f5f9;display:flex;flex-direction:column;}
+.page-content{display:flex;flex:1;overflow:hidden;}
+.sidebar-clone{width:200px;background:#1e293b;flex-shrink:0;}
+.page-main{flex:1;padding:22px;}
+.page-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;}
+.page-title{font-size:20px;font-weight:800;color:#0f172a;}
+.btn-add{background:#4f46e5;color:#fff;border:none;border-radius:8px;padding:8px 18px;
+  font-size:12px;font-weight:600;cursor:pointer;display:flex;align-items:center;gap:6px;}
+.search-bar{background:#fff;border:1px solid #e2e8f0;border-radius:8px;padding:8px 14px;
+  display:flex;align-items:center;gap:8px;font-size:12px;color:#94a3b8;margin-bottom:14px;width:280px;}
+.table-card{background:#fff;border-radius:10px;border:1px solid #e2e8f0;overflow:hidden;}
+table{width:100%;border-collapse:collapse;}
+th{background:#f8fafc;padding:10px 14px;text-align:left;font-size:10px;font-weight:700;
+  text-transform:uppercase;letter-spacing:.5px;color:#64748b;border-bottom:1px solid #e2e8f0;}
+td{padding:10px 14px;font-size:12px;color:#374151;border-bottom:1px solid #f1f5f9;}
+tr:last-child td{border-bottom:none;}
+.student-name{display:flex;align-items:center;gap:8px;}
+.av{width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;
+  font-size:10px;font-weight:700;color:#fff;flex-shrink:0;}
+.tag{display:inline-flex;align-items:center;gap:3px;padding:2px 8px;border-radius:100px;font-size:10px;font-weight:600;}
+.tag-green{background:#d1fae5;color:#065f46;}
+.tag-blue{background:#dbeafe;color:#1e40af;}
+.tag-purple{background:#ede9fe;color:#5b21b6;}
+.new-row{animation:highlightRow .5s ease forwards;background:#fef3c7 !important;}
+@keyframes highlightRow{0%{background:#fef3c7;}100%{background:#fff;}}
+
+/* ═══════════════ SCENE 4 — NOTES ═══════════════ */
+#s4{background:#f1f5f9;display:flex;flex-direction:column;}
+.notes-content{display:flex;gap:14px;flex:1;overflow:hidden;}
+.notes-left{flex:1;display:flex;flex-direction:column;gap:12px;}
+.notes-right{width:320px;display:flex;flex-direction:column;gap:12px;}
+.card{background:#fff;border-radius:10px;border:1px solid #e2e8f0;padding:16px;}
+.card-title{font-size:12px;font-weight:700;color:#0f172a;margin-bottom:12px;
+  display:flex;align-items:center;gap:8px;}
+.card-title i{color:#6366f1;}
+.grade-table table{width:100%;}
+.grade-table td{padding:7px 10px;font-size:11px;}
+.score-input{background:#f8fafc;border:1px solid #e2e8f0;border-radius:5px;
+  padding:3px 7px;width:50px;font-size:11px;font-weight:700;text-align:center;
+  color:#0f172a;}
+.score-input.highlight{background:#ede9fe;border-color:#8b5cf6;animation:pulse .4s ease;}
+@keyframes pulse{0%,100%{transform:scale(1);}50%{transform:scale(1.08);}}
+.moy-badge{display:inline-flex;align-items:center;gap:4px;padding:3px 9px;
+  border-radius:100px;font-size:11px;font-weight:700;}
+.moy-a{background:#d1fae5;color:#065f46;}
+.moy-b{background:#dbeafe;color:#1e40af;}
+.moy-c{background:#fef3c7;color:#92400e;}
+.bulletin-preview{background:linear-gradient(135deg,#f8fafc,#eff6ff);border:1px solid #bfdbfe;
+  border-radius:10px;padding:16px;text-align:center;}
+.bulletin-logo{width:44px;height:44px;background:#4f46e5;border-radius:10px;
+  display:flex;align-items:center;justify-content:center;margin:0 auto 10px;color:#fff;font-size:20px;}
+.bulletin-name{font-size:13px;font-weight:800;color:#0f172a;margin-bottom:4px;}
+.bulletin-sub{font-size:10px;color:#64748b;}
+.bulletin-avg{font-size:36px;font-weight:900;color:#4f46e5;margin:10px 0 2px;}
+.bulletin-rank{font-size:11px;color:#64748b;margin-bottom:12px;}
+.pdf-btn{background:#4f46e5;color:#fff;border:none;border-radius:7px;padding:8px 18px;
+  font-size:11px;font-weight:600;cursor:pointer;display:inline-flex;align-items:center;gap:6px;
+  animation:bounce .6s ease infinite alternate;}
+@keyframes bounce{0%{transform:translateY(0);}100%{transform:translateY(-3px);}}
+
+/* ═══════════════ SCENE 5 — FINANCE ═══════════════ */
+#s5{background:#f1f5f9;display:flex;flex-direction:column;}
+.fin-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-bottom:14px;}
+.fin-kpi{background:#fff;border-radius:10px;border:1px solid #e2e8f0;padding:16px;}
+.fin-kpi-label{font-size:10px;color:#94a3b8;font-weight:600;margin-bottom:6px;text-transform:uppercase;}
+.fin-kpi-val{font-size:26px;font-weight:900;color:#0f172a;line-height:1;}
+.fin-kpi-sub{font-size:10px;margin-top:4px;}
+.fin-body{display:grid;grid-template-columns:1.4fr 1fr;gap:12px;}
+.payments-list{display:flex;flex-direction:column;gap:6px;}
+.payment-row{display:flex;align-items:center;justify-content:space-between;
+  padding:9px 12px;border-radius:8px;background:#f8fafc;border:1px solid #f1f5f9;
+  animation:slideLeft .4s ease forwards;opacity:0;}
+.payment-row.paid{border-left:3px solid #10b981;}
+.payment-row.pending{border-left:3px solid #f59e0b;}
+.pay-name{display:flex;align-items:center;gap:8px;font-size:11px;font-weight:600;color:#0f172a;}
+.pay-amt{font-size:11px;font-weight:700;}
+.amt-green{color:#10b981;}
+.amt-yellow{color:#f59e0b;}
+.donut-wrap{display:flex;flex-direction:column;align-items:center;justify-content:center;
+  background:#fff;border-radius:10px;border:1px solid #e2e8f0;padding:16px;}
+.donut-title{font-size:12px;font-weight:700;color:#0f172a;margin-bottom:12px;}
+.donut-center{position:relative;display:inline-flex;align-items:center;justify-content:center;}
+.donut-pct{position:absolute;text-align:center;}
+.donut-pct strong{display:block;font-size:26px;font-weight:900;color:#4f46e5;line-height:1;}
+.donut-pct span{font-size:9px;color:#94a3b8;}
+
+/* ═══════════════ SCENE 6 — MODULES ═══════════════ */
+#s6{background:linear-gradient(135deg,#0f172a,#1e293b);display:flex;align-items:center;justify-content:center;flex-direction:column;padding:40px;}
+.s6-title{font-size:36px;font-weight:900;color:#fff;text-align:center;margin-bottom:8px;letter-spacing:-1px;}
+.s6-sub{font-size:15px;color:rgba(255,255,255,.5);text-align:center;margin-bottom:36px;}
+.modules-showcase{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;width:100%;}
+.mod{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.08);border-radius:12px;
+  padding:18px;display:flex;flex-direction:column;gap:8px;
+  animation:scaleIn .4s ease forwards;opacity:0;}
+.mod-icon{width:40px;height:40px;border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:18px;color:#fff;}
+.mod-name{font-size:13px;font-weight:700;color:#fff;}
+.mod-desc{font-size:10px;color:#64748b;line-height:1.4;}
+.mod-status{display:inline-flex;align-items:center;gap:4px;padding:2px 8px;border-radius:100px;font-size:9px;font-weight:600;align-self:flex-start;}
+.status-on{background:rgba(16,185,129,.15);color:#34d399;}
+.status-opt{background:rgba(251,191,36,.15);color:#fbbf24;}
+
+/* ═══════════════ SCENE 7 — OUTRO ═══════════════ */
+#s7{background:linear-gradient(135deg,#1e1b4b,#312e81,#4f46e5);
+    display:flex;align-items:center;justify-content:center;flex-direction:column;}
+.outro-logo{width:80px;height:80px;background:rgba(255,255,255,.12);border-radius:20px;
+  display:flex;align-items:center;justify-content:center;margin-bottom:24px;
+  border:2px solid rgba(255,255,255,.2);}
+.outro-logo i{font-size:38px;color:#fbbf24;}
+.outro-title{font-size:44px;font-weight:900;color:#fff;letter-spacing:-1.5px;margin-bottom:8px;}
+.outro-tag{font-size:16px;color:rgba(255,255,255,.6);margin-bottom:32px;}
+.outro-contacts{display:flex;flex-direction:column;align-items:center;gap:12px;}
+.outro-contact{display:flex;align-items:center;gap:10px;font-size:15px;color:rgba(255,255,255,.8);font-weight:500;}
+.outro-contact i{color:#fbbf24;font-size:18px;}
+.outro-cta{margin-top:32px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.25);
+  border-radius:12px;padding:16px 36px;color:#fff;font-size:15px;font-weight:700;
+  display:flex;align-items:center;gap:10px;}
+.outro-cta i{color:#fbbf24;}
+
+/* ── Transitions ── */
+.topbar-clone{background:#0f172a;height:52px;display:flex;align-items:center;padding:0 20px;gap:12px;flex-shrink:0;}
+
+/* ── Animations ── */
+@keyframes popIn{0%{opacity:0;transform:scale(.5);}100%{opacity:1;transform:scale(1);}}
+@keyframes slideUp{0%{opacity:0;transform:translateY(20px);}100%{opacity:1;transform:translateY(0);}}
+@keyframes slideLeft{0%{opacity:0;transform:translateX(-12px);}100%{opacity:1;transform:translateX(0);}}
+@keyframes scaleIn{0%{opacity:0;transform:scale(.85);}100%{opacity:1;transform:scale(1);}}
+@keyframes countUp{from{opacity:0;}to{opacity:1;}}
+
+/* Highlight ring animating around active nav item */
+.highlight-ring{
+  position:absolute;border:2px solid #fbbf24;border-radius:8px;
+  transition:all .3s ease;pointer-events:none;
+}
+
+/* Progress bar */
+.progress-bar{position:fixed;bottom:0;left:0;height:3px;background:linear-gradient(90deg,#6366f1,#fbbf24);
+  transition:width .1s linear;z-index:9999;}
+
+/* Typing cursor */
+.cursor{display:inline-block;width:2px;height:1em;background:#4f46e5;margin-left:2px;
+  animation:blink .7s ease infinite;}
+@keyframes blink{0%,100%{opacity:1;}50%{opacity:0;}}
+</style>
+</head>
+<body>
+
+<!-- Progress bar -->
+<div class="progress-bar" id="progressBar" style="width:0%"></div>
+
+<!-- ═══ SCENE 1 — INTRO ═══ -->
+<div class="scene active" id="s1">
+  <div class="intro-logo"><i class="fas fa-graduation-cap"></i></div>
+  <h1 class="intro-title">Edu<span>Manager</span> ERP</h1>
+  <p class="intro-sub">La plateforme de gestion scolaire de nouvelle génération</p>
+  <div class="intro-badge"><i class="fas fa-map-marker-alt"></i> Gonaïves, Haïti &nbsp;·&nbsp; <i class="fab fa-whatsapp"></i> +509 41 44 46 71</div>
+</div>
+
+<!-- ═══ SCENE 2 — DASHBOARD ═══ -->
+<div class="scene" id="s2">
+  <div class="s2-topbar">
+    <div class="s2-logo-mini">
+      <div class="icon"><i class="fas fa-graduation-cap"></i></div>
+      <span>EduManager ERP</span>
+    </div>
+    <div style="flex:1"></div>
+    <div style="background:rgba(255,255,255,.08);border-radius:6px;padding:5px 14px;font-size:11px;color:#a5b4fc;font-weight:600;">
+      Groupe Scolaire Excellence
+    </div>
+  </div>
+  <div class="s2-body">
+    <div class="s2-sidebar">
+      <div style="font-size:9px;color:#475569;text-transform:uppercase;letter-spacing:2px;margin-bottom:8px;padding:4px 8px;">Principal</div>
+      <div class="s2-nav-item active"><i class="fas fa-tachometer-alt"></i> Tableau de bord</div>
+      <div class="s2-nav-item"><i class="fas fa-user-graduate"></i> Élèves <span style="margin-left:auto;background:#6366f1;color:#fff;font-size:9px;padding:1px 6px;border-radius:8px;">40</span></div>
+      <div class="s2-nav-item"><i class="fas fa-chalkboard-teacher"></i> Enseignants</div>
+      <div class="s2-nav-item"><i class="fas fa-graduation-cap"></i> Académique</div>
+      <div class="s2-nav-item"><i class="fas fa-clipboard-check"></i> Présences</div>
+      <div class="s2-nav-item"><i class="fas fa-file-alt"></i> Évaluations</div>
+      <div class="s2-nav-item"><i class="fas fa-star"></i> Notes</div>
+      <div class="s2-nav-item"><i class="fas fa-file-pdf"></i> Documents</div>
+      <div style="font-size:9px;color:#475569;text-transform:uppercase;letter-spacing:2px;margin:12px 0 8px;padding:4px 8px;">Optionnels</div>
+      <div class="s2-nav-item"><i class="fas fa-coins" style="color:#f59e0b;"></i> Finance</div>
+      <div class="s2-nav-item"><i class="fas fa-book" style="color:#a78bfa;"></i> Bibliothèque</div>
+      <div class="s2-nav-item"><i class="fas fa-envelope" style="color:#60a5fa;"></i> Communications</div>
+    </div>
+    <div class="s2-main">
+      <div class="s2-header">
+        <div>
+          <div class="s2-title">Tableau de bord</div>
+          <div class="s2-date">Lundi 16 Juin 2025 · Trimestre 3</div>
+        </div>
+        <button style="background:#4f46e5;color:#fff;border:none;border-radius:8px;padding:8px 16px;font-size:12px;font-weight:600;cursor:pointer;display:flex;align-items:center;gap:6px;"><i class="fas fa-plus"></i> Action rapide</button>
+      </div>
+      <div class="kpi-grid">
+        <div class="kpi" style="border-left-color:#3b82f6;animation-delay:.1s;">
+          <div class="kpi-num" id="k1">0</div><div class="kpi-label">Élèves inscrits</div></div>
+        <div class="kpi" style="border-left-color:#10b981;animation-delay:.2s;">
+          <div class="kpi-num" id="k2">0</div><div class="kpi-label">Enseignants</div></div>
+        <div class="kpi" style="border-left-color:#8b5cf6;animation-delay:.3s;">
+          <div class="kpi-num" id="k3">0</div><div class="kpi-label">Classes</div></div>
+        <div class="kpi" style="border-left-color:#f59e0b;animation-delay:.4s;">
+          <div class="kpi-num" id="k4">0</div><div class="kpi-label">Moy. générale</div></div>
+        <div class="kpi" style="border-left-color:#0d9488;animation-delay:.5s;">
+          <div class="kpi-num" id="k5">0%</div><div class="kpi-label">Taux présence</div></div>
+        <div class="kpi" style="border-left-color:#ef4444;animation-delay:.6s;">
+          <div class="kpi-num" style="font-size:18px;" id="k6">0 F</div><div class="kpi-label">Recettes mois</div></div>
+      </div>
+      <div class="s2-grid">
+        <div class="chart-card">
+          <div class="chart-title">Évolution des moyennes — 2024/2025</div>
+          <div class="bars" id="chartBars">
+            <div class="bar-wrap"><div class="bar" style="background:linear-gradient(to top,#6366f1,#818cf8);height:0;" data-h="64%"></div><div class="bar-lbl">6eA</div></div>
+            <div class="bar-wrap"><div class="bar" style="background:linear-gradient(to top,#6366f1,#818cf8);height:0;" data-h="71%"></div><div class="bar-lbl">6eB</div></div>
+            <div class="bar-wrap"><div class="bar" style="background:linear-gradient(to top,#6366f1,#818cf8);height:0;" data-h="68%"></div><div class="bar-lbl">5eA</div></div>
+            <div class="bar-wrap"><div class="bar" style="background:linear-gradient(to top,#8b5cf6,#a78bfa);height:0;" data-h="60%"></div><div class="bar-lbl">4eA</div></div>
+            <div class="bar-wrap"><div class="bar" style="background:linear-gradient(to top,#10b981,#34d399);height:0;" data-h="76%"></div><div class="bar-lbl">3eA</div></div>
+            <div class="bar-wrap"><div class="bar" style="background:linear-gradient(to top,#6366f1,#818cf8);height:0;" data-h="69%"></div><div class="bar-lbl">2nde</div></div>
+          </div>
+        </div>
+        <div class="quick-card">
+          <div class="quick-title">Accès rapide</div>
+          <div class="quick-grid">
+            <div class="quick-btn" style="background:#eff6ff;color:#1e40af;"><i class="fas fa-user-plus" style="color:#3b82f6;"></i>Ajouter élève</div>
+            <div class="quick-btn" style="background:#f0fdf4;color:#14532d;"><i class="fas fa-clipboard-list" style="color:#16a34a;"></i>Faire l'appel</div>
+            <div class="quick-btn" style="background:#fffbeb;color:#78350f;"><i class="fas fa-pen" style="color:#d97706;"></i>Saisir notes</div>
+            <div class="quick-btn" style="background:#faf5ff;color:#4c1d95;"><i class="fas fa-file-pdf" style="color:#7c3aed;"></i>Bulletin PDF</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ SCENE 3 — ÉLÈVES ═══ -->
+<div class="scene" id="s3">
+  <div class="topbar-clone">
+    <div class="s2-logo-mini">
+      <div class="icon"><i class="fas fa-graduation-cap"></i></div>
+      <span style="color:#fff;font-size:14px;font-weight:800;">EduManager ERP</span>
+    </div>
+  </div>
+  <div class="page-content">
+    <div class="sidebar-clone"></div>
+    <div class="page-main">
+      <div class="page-header">
+        <div><div class="page-title">Élèves</div><div style="font-size:11px;color:#94a3b8;">40 élèves inscrits · Année 2024/2025</div></div>
+        <button class="btn-add"><i class="fas fa-plus"></i> Nouvel élève</button>
+      </div>
+      <div class="search-bar"><i class="fas fa-search" style="color:#94a3b8;"></i><span id="searchText"></span><span class="cursor"></span></div>
+      <div class="table-card">
+        <table>
+          <thead><tr><th>Élève</th><th>Numéro</th><th>Classe</th><th>Moy.</th><th>Présence</th><th>Statut</th></tr></thead>
+          <tbody id="studentsTable">
+            <tr><td><div class="student-name"><div class="av" style="background:linear-gradient(135deg,#6366f1,#8b5cf6);">KK</div><div><div style="font-weight:600;font-size:12px;">Kofi Kouadio</div><div style="font-size:10px;color:#94a3b8;">EL-2025-0042</div></div></div></td><td style="font-size:11px;">EL-2025-0042</td><td><span class="tag tag-blue">6e A</span></td><td style="font-weight:700;color:#10b981;">14.4</td><td style="font-weight:700;color:#10b981;">96%</td><td><span class="tag tag-green">Actif</span></td></tr>
+            <tr><td><div class="student-name"><div class="av" style="background:linear-gradient(135deg,#f59e0b,#f97316);">MB</div><div><div style="font-weight:600;font-size:12px;">Marie Bamba</div><div style="font-size:10px;color:#94a3b8;">EL-2025-0038</div></div></div></td><td style="font-size:11px;">EL-2025-0038</td><td><span class="tag tag-purple">3e A</span></td><td style="font-weight:700;color:#6366f1;">17.4</td><td style="font-weight:700;color:#10b981;">100%</td><td><span class="tag tag-green">Actif</span></td></tr>
+            <tr><td><div class="student-name"><div class="av" style="background:linear-gradient(135deg,#10b981,#0d9488);">JT</div><div><div style="font-weight:600;font-size:12px;">Jean Traoré</div><div style="font-size:10px;color:#94a3b8;">EL-2025-0031</div></div></div></td><td style="font-size:11px;">EL-2025-0031</td><td><span class="tag tag-blue">5e A</span></td><td style="font-weight:700;color:#f59e0b;">11.6</td><td style="font-weight:700;color:#f59e0b;">82%</td><td><span class="tag" style="background:#fef3c7;color:#92400e;">En cours</span></td></tr>
+            <tr><td><div class="student-name"><div class="av" style="background:linear-gradient(135deg,#e11d48,#9f1239);">AA</div><div><div style="font-weight:600;font-size:12px;">Amina Assi</div><div style="font-size:10px;color:#94a3b8;">EL-2025-0019</div></div></div></td><td style="font-size:11px;">EL-2025-0019</td><td><span class="tag tag-purple">2nde</span></td><td style="font-weight:700;color:#10b981;">15.8</td><td style="font-weight:700;color:#10b981;">98%</td><td><span class="tag tag-green">Actif</span></td></tr>
+            <tr id="newRow" style="display:none;"><td><div class="student-name"><div class="av" style="background:linear-gradient(135deg,#06b6d4,#0284c7);">PD</div><div><div style="font-weight:600;font-size:12px;">Pierre Désir</div><div style="font-size:10px;color:#94a3b8;">EL-2025-0043</div></div></div></td><td style="font-size:11px;">EL-2025-0043</td><td><span class="tag tag-blue">6e B</span></td><td style="color:#94a3b8;">—</td><td style="color:#94a3b8;">—</td><td><span class="tag" style="background:#dbeafe;color:#1e40af;">Nouveau</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ SCENE 4 — NOTES ═══ -->
+<div class="scene" id="s4">
+  <div class="topbar-clone">
+    <div class="s2-logo-mini">
+      <div class="icon"><i class="fas fa-graduation-cap"></i></div>
+      <span style="color:#fff;font-size:14px;font-weight:800;">EduManager ERP</span>
+    </div>
+    <span style="margin-left:16px;color:#a5b4fc;font-size:12px;font-weight:600;"><i class="fas fa-star" style="margin-right:6px;"></i>Notes & Bulletins — Trimestre 2</span>
+  </div>
+  <div style="display:flex;flex:1;overflow:hidden;">
+    <div class="sidebar-clone"></div>
+    <div style="flex:1;padding:18px;display:flex;flex-direction:column;gap:12px;overflow:hidden;">
+      <div style="font-size:18px;font-weight:800;color:#0f172a;">Saisie des notes — Mathématiques · 6e A</div>
+      <div class="notes-content" style="flex:1;">
+        <div class="notes-left">
+          <div class="card grade-table">
+            <div class="card-title"><i class="fas fa-pen"></i> Notes — Devoir N°3</div>
+            <table>
+              <thead><tr><th>Élève</th><th>Note /20</th><th>Moy. Matière</th><th>Mention</th></tr></thead>
+              <tbody>
+                <tr><td style="font-size:11px;font-weight:600;">Kofi Kouadio</td><td><input class="score-input" value="16" readonly/></td><td style="font-weight:700;color:#10b981;">14.4</td><td><span class="moy-badge moy-a">Bien</span></td></tr>
+                <tr><td style="font-size:11px;font-weight:600;">Marie Bamba</td><td><input class="score-input" value="18" readonly/></td><td style="font-weight:700;color:#6366f1;">17.4</td><td><span class="moy-badge moy-a">TB</span></td></tr>
+                <tr><td style="font-size:11px;font-weight:600;">Jean Traoré</td><td><input class="score-input highlight" id="jeanScore" value="12" readonly/></td><td style="font-weight:700;color:#f59e0b;">11.6</td><td><span class="moy-badge moy-c">Passable</span></td></tr>
+                <tr><td style="font-size:11px;font-weight:600;">Amina Assi</td><td><input class="score-input" value="15" readonly/></td><td style="font-weight:700;color:#10b981;">15.8</td><td><span class="moy-badge moy-b">AB</span></td></tr>
+                <tr><td style="font-size:11px;font-weight:600;">Paul Koné</td><td><input class="score-input" value="9" readonly/></td><td style="font-weight:700;color:#ef4444;">8.9</td><td><span class="moy-badge" style="background:#fee2e2;color:#991b1b;">Faible</span></td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="card" style="display:flex;align-items:center;gap:16px;padding:12px 16px;">
+            <i class="fas fa-check-circle" style="color:#10b981;font-size:20px;"></i>
+            <div><div style="font-size:12px;font-weight:700;color:#0f172a;">Notes enregistrées avec succès</div>
+            <div style="font-size:10px;color:#64748b;">Moyennes mises à jour automatiquement</div></div>
+            <button style="margin-left:auto;background:#4f46e5;color:#fff;border:none;border-radius:7px;padding:7px 14px;font-size:11px;font-weight:600;cursor:pointer;display:flex;align-items:center;gap:5px;"><i class="fas fa-save"></i> Enregistrer</button>
+          </div>
+        </div>
+        <div class="notes-right">
+          <div class="bulletin-preview">
+            <div class="bulletin-logo"><i class="fas fa-graduation-cap"></i></div>
+            <div style="font-size:10px;color:#64748b;margin-bottom:4px;">BULLETIN SCOLAIRE · TRIMESTRE 2</div>
+            <div class="bulletin-name">Kofi Kouadio</div>
+            <div class="bulletin-sub">6e A · Année 2024/2025</div>
+            <div class="bulletin-avg" id="avgNum">14.4</div>
+            <div class="bulletin-rank">1er / 28 élèves</div>
+            <button class="pdf-btn"><i class="fas fa-file-pdf"></i> Télécharger PDF</button>
+          </div>
+          <div class="card">
+            <div class="card-title" style="margin-bottom:8px;"><i class="fas fa-chart-bar"></i> Résumé classe</div>
+            <div style="display:flex;justify-content:space-between;font-size:11px;margin-bottom:6px;">
+              <span style="color:#64748b;">Moyenne classe</span><strong>12.8</strong></div>
+            <div style="display:flex;justify-content:space-between;font-size:11px;margin-bottom:6px;">
+              <span style="color:#64748b;">Meilleure note</span><strong style="color:#10b981;">18/20</strong></div>
+            <div style="display:flex;justify-content:space-between;font-size:11px;">
+              <span style="color:#64748b;">Note la plus basse</span><strong style="color:#ef4444;">6/20</strong></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ SCENE 5 — FINANCE ═══ -->
+<div class="scene" id="s5">
+  <div class="topbar-clone">
+    <div class="s2-logo-mini">
+      <div class="icon"><i class="fas fa-graduation-cap"></i></div>
+      <span style="color:#fff;font-size:14px;font-weight:800;">EduManager ERP</span>
+    </div>
+    <span style="margin-left:16px;color:#fcd34d;font-size:12px;font-weight:600;"><i class="fas fa-coins" style="margin-right:6px;"></i>Module Finance — Juin 2025</span>
+  </div>
+  <div style="display:flex;flex:1;overflow:hidden;">
+    <div class="sidebar-clone"></div>
+    <div style="flex:1;padding:18px;display:flex;flex-direction:column;gap:12px;overflow:hidden;">
+      <div style="font-size:18px;font-weight:800;color:#0f172a;">Finance & Comptabilité</div>
+      <div class="fin-grid">
+        <div class="fin-kpi">
+          <div class="fin-kpi-label">Total encaissé</div>
+          <div class="fin-kpi-val" id="fk1" style="color:#10b981;">0 F</div>
+          <div class="fin-kpi-sub" style="color:#10b981;"><i class="fas fa-arrow-up"></i> +12% vs mois dernier</div>
+        </div>
+        <div class="fin-kpi">
+          <div class="fin-kpi-label">Total attendu</div>
+          <div class="fin-kpi-val" id="fk2">0 F</div>
+          <div class="fin-kpi-sub" style="color:#64748b;">40 élèves × 245 000 F</div>
+        </div>
+        <div class="fin-kpi">
+          <div class="fin-kpi-label">Taux de recouvrement</div>
+          <div class="fin-kpi-val" style="color:#6366f1;" id="fk3">0%</div>
+          <div class="fin-kpi-sub" style="color:#64748b;">29 / 40 élèves payés</div>
+        </div>
+      </div>
+      <div class="fin-body">
+        <div class="card">
+          <div class="card-title"><i class="fas fa-list"></i> Paiements récents</div>
+          <div class="payments-list" id="payList">
+            <div class="payment-row paid" style="animation-delay:.1s;"><div class="pay-name"><div class="av" style="width:26px;height:26px;font-size:10px;background:#10b981;">KK</div>Kofi Kouadio</div><span class="pay-amt amt-green">+245 000 F</span></div>
+            <div class="payment-row paid" style="animation-delay:.25s;"><div class="pay-name"><div class="av" style="width:26px;height:26px;font-size:10px;background:#6366f1;">MB</div>Marie Bamba</div><span class="pay-amt amt-green">+245 000 F</span></div>
+            <div class="payment-row paid" style="animation-delay:.4s;"><div class="pay-name"><div class="av" style="width:26px;height:26px;font-size:10px;background:#e11d48;">AA</div>Amina Assi</div><span class="pay-amt amt-green">+245 000 F</span></div>
+            <div class="payment-row pending" style="animation-delay:.55s;"><div class="pay-name"><div class="av" style="width:26px;height:26px;font-size:10px;background:#f59e0b;">JT</div>Jean Traoré</div><span class="pay-amt amt-yellow">En attente</span></div>
+            <div class="payment-row pending" style="animation-delay:.7s;"><div class="pay-name"><div class="av" style="width:26px;height:26px;font-size:10px;background:#64748b;">PK</div>Paul Koné</div><span class="pay-amt amt-yellow">En attente</span></div>
+          </div>
+        </div>
+        <div class="donut-wrap">
+          <div class="donut-title">Taux de recouvrement</div>
+          <div class="donut-center">
+            <svg width="140" height="140" viewBox="0 0 140 140">
+              <circle cx="70" cy="70" r="52" fill="none" stroke="#f1f5f9" stroke-width="14"/>
+              <circle cx="70" cy="70" r="52" fill="none" stroke="#4f46e5" stroke-width="14"
+                stroke-dasharray="0 326.7" stroke-linecap="round"
+                transform="rotate(-90 70 70)" id="donutCircle"
+                style="transition:stroke-dasharray 1.5s ease;"/>
+            </svg>
+            <div class="donut-pct"><strong id="donutPct">0%</strong><span>collecté</span></div>
+          </div>
+          <div style="margin-top:14px;text-align:center;font-size:11px;color:#64748b;">
+            <strong style="color:#10b981;font-size:16px;">7 105 000 F</strong><br>sur 9 800 000 F attendus
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ SCENE 6 — MODULES ═══ -->
+<div class="scene" id="s6">
+  <div class="s6-title">13 Modules. Une seule plateforme.</div>
+  <div class="s6-sub">Activez uniquement ce dont vous avez besoin</div>
+  <div class="modules-showcase">
+    <div class="mod" style="animation-delay:.05s;"><div class="mod-icon" style="background:#3b82f6;"><i class="fas fa-user-graduate"></i></div><div class="mod-name">Élèves</div><div class="mod-desc">Inscriptions, dossiers, historique scolaire</div><span class="mod-status status-on">● Actif</span></div>
+    <div class="mod" style="animation-delay:.1s;"><div class="mod-icon" style="background:#16a34a;"><i class="fas fa-chalkboard-teacher"></i></div><div class="mod-name">Enseignants</div><div class="mod-desc">Profils, contrats, affectations</div><span class="mod-status status-on">● Actif</span></div>
+    <div class="mod" style="animation-delay:.15s;"><div class="mod-icon" style="background:#7c3aed;"><i class="fas fa-graduation-cap"></i></div><div class="mod-name">Académique</div><div class="mod-desc">Années scolaires, classes, matières</div><span class="mod-status status-on">● Actif</span></div>
+    <div class="mod" style="animation-delay:.2s;"><div class="mod-icon" style="background:#0d9488;"><i class="fas fa-clipboard-check"></i></div><div class="mod-name">Présences</div><div class="mod-desc">Appels, absences, justificatifs</div><span class="mod-status status-on">● Actif</span></div>
+    <div class="mod" style="animation-delay:.25s;"><div class="mod-icon" style="background:#d97706;"><i class="fas fa-file-alt"></i></div><div class="mod-name">Évaluations</div><div class="mod-desc">Devoirs, examens, saisie en ligne</div><span class="mod-status status-on">● Actif</span></div>
+    <div class="mod" style="animation-delay:.3s;"><div class="mod-icon" style="background:#e11d48;"><i class="fas fa-star"></i></div><div class="mod-name">Notes & Bulletins</div><div class="mod-desc">Moyennes, classements, PDF</div><span class="mod-status status-on">● Actif</span></div>
+    <div class="mod" style="animation-delay:.35s;"><div class="mod-icon" style="background:#f59e0b;"><i class="fas fa-coins"></i></div><div class="mod-name">Finance</div><div class="mod-desc">Facturation, paiements, rapports</div><span class="mod-status status-opt">⚡ Optionnel</span></div>
+    <div class="mod" style="animation-delay:.4s;"><div class="mod-icon" style="background:#a21caf;"><i class="fas fa-book"></i></div><div class="mod-name">Bibliothèque</div><div class="mod-desc">Catalogue, prêts, retours</div><span class="mod-status status-opt">⚡ Optionnel</span></div>
+    <div class="mod" style="animation-delay:.45s;"><div class="mod-icon" style="background:#0284c7;"><i class="fas fa-envelope"></i></div><div class="mod-name">Communications</div><div class="mod-desc">Messagerie, notifications parents</div><span class="mod-status status-opt">⚡ Optionnel</span></div>
+    <div class="mod" style="animation-delay:.5s;"><div class="mod-icon" style="background:#334155;"><i class="fas fa-file-pdf"></i></div><div class="mod-name">Documents PDF</div><div class="mod-desc">Bulletins, attestations, certificats</div><span class="mod-status status-on">● Actif</span></div>
+    <div class="mod" style="animation-delay:.55s;"><div class="mod-icon" style="background:#1e40af;"><i class="fas fa-chart-bar"></i></div><div class="mod-name">Rapports</div><div class="mod-desc">Statistiques, exports Excel</div><span class="mod-status status-on">● Actif</span></div>
+    <div class="mod" style="animation-delay:.6s;"><div class="mod-icon" style="background:#4f46e5;"><i class="fas fa-cog"></i></div><div class="mod-name">Paramètres</div><div class="mod-desc">Configuration, utilisateurs, rôles</div><span class="mod-status status-on">● Actif</span></div>
+  </div>
+</div>
+
+<!-- ═══ SCENE 7 — OUTRO ═══ -->
+<div class="scene" id="s7">
+  <div class="outro-logo"><i class="fas fa-graduation-cap"></i></div>
+  <div class="outro-title">EduManager ERP</div>
+  <div class="outro-tag">Next Generation School Management</div>
+  <div class="outro-contacts">
+    <div class="outro-contact"><i class="fas fa-envelope"></i> clubcodinggonaives@gmail.com</div>
+    <div class="outro-contact"><i class="fab fa-whatsapp"></i> +509 41 44 46 71</div>
+    <div class="outro-contact"><i class="fas fa-map-marker-alt"></i> Gonaïves, Haïti</div>
+  </div>
+  <div class="outro-cta"><i class="fas fa-rocket"></i> Demandez votre démo gratuite dès aujourd'hui</div>
+</div>
+
+<script>
+// ── Timeline (ms) ──────────────────────────────────
+// S1: 0–4000   (intro)
+// S2: 4000–10000 (dashboard)
+// S3: 10000–16000 (élèves)
+// S4: 16000–22000 (notes)
+// S5: 22000–28000 (finance)
+// S6: 28000–33000 (modules)
+// S7: 33000–38000 (outro)
+const TOTAL = 38000;
+
+function show(id){
+  document.querySelectorAll('.scene').forEach(s=>s.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+}
+
+function lerp(a,b,t){return Math.round(a+(b-a)*t);}
+function easeOut(t){return 1-Math.pow(1-t,3);}
+
+// KPI counters
+function animateKPI(id,target,suffix='',duration=1200,start=0){
+  const el=document.getElementById(id);
+  if(!el)return;
+  const s=performance.now();
+  const tick=now=>{
+    const p=Math.min((now-s)/duration,1);
+    const v=Math.round(easeOut(p)*target);
+    el.textContent=id==='k6'?formatF(v*1000):v+suffix;
+    if(p<1)requestAnimationFrame(tick);
+  };
+  requestAnimationFrame(tick);
+}
+function formatF(n){return new Intl.NumberFormat('fr').format(n)+' F';}
+
+// Chart bars
+function animateBars(){
+  document.querySelectorAll('#chartBars .bar').forEach((b,i)=>{
+    const target=b.dataset.h;
+    setTimeout(()=>{b.style.height=target;},i*120);
+  });
+}
+
+// Donut
+function animateDonut(pct){
+  const circ=326.7;
+  const fill=circ*(pct/100);
+  document.getElementById('donutCircle').style.strokeDasharray=fill+' '+(circ-fill);
+  const el=document.getElementById('donutPct');
+  const s=performance.now();
+  const tick=now=>{
+    const p=Math.min((now-s)/1500,1);
+    el.textContent=Math.round(easeOut(p)*pct)+'%';
+    if(p<1)requestAnimationFrame(tick);
+  };
+  requestAnimationFrame(tick);
+}
+
+// Finance KPIs
+function animateFinKPIs(){
+  const fk1=document.getElementById('fk1');
+  const fk2=document.getElementById('fk2');
+  const fk3=document.getElementById('fk3');
+  const s=performance.now();
+  const tick=now=>{
+    const p=Math.min((now-s)/1400,1);
+    const e=easeOut(p);
+    if(fk1)fk1.textContent=new Intl.NumberFormat('fr').format(Math.round(e*7105000))+' F';
+    if(fk2)fk2.textContent=new Intl.NumberFormat('fr').format(Math.round(e*9800000))+' F';
+    if(fk3)fk3.textContent=Math.round(e*72)+'%';
+    if(p<1)requestAnimationFrame(tick);
+  };
+  requestAnimationFrame(tick);
+}
+
+// Type search text
+function typeText(id,text,cb){
+  const el=document.getElementById(id);
+  if(!el)return;
+  let i=0;
+  const iv=setInterval(()=>{
+    el.textContent=text.slice(0,++i);
+    if(i>=text.length){clearInterval(iv);if(cb)setTimeout(cb,400);}
+  },60);
+}
+
+// Main timeline
+let started=false;
+function startDemo(){
+  if(started)return;
+  started=true;
+  const t0=performance.now();
+
+  function tick(){
+    const t=performance.now()-t0;
+    const pct=(t/TOTAL)*100;
+    document.getElementById('progressBar').style.width=Math.min(pct,100)+'%';
+
+    // Scene transitions
+    if(t>=0    && t<4000)  show('s1');
+    if(t>=4000 && t<10000) show('s2');
+    if(t>=10000&& t<16000) show('s3');
+    if(t>=16000&& t<22000) show('s4');
+    if(t>=22000&& t<28000) show('s5');
+    if(t>=28000&& t<33000) show('s6');
+    if(t>=33000)           show('s7');
+
+    if(t<TOTAL) requestAnimationFrame(tick);
+  }
+  requestAnimationFrame(tick);
+
+  // Scene-specific animations
+  // S2 at 4.3s
+  setTimeout(()=>{
+    document.querySelectorAll('.kpi').forEach(k=>k.style.opacity=1);
+    animateKPI('k1',40,'',800);
+    animateKPI('k2',4,'',600);
+    animateKPI('k3',6,'',600);
+    animateKPI('k4',135,'',800); // will show 135 but we'll fix display
+    animateKPI('k5',94,'%',900);
+    // Fix k4 to show decimal
+    setTimeout(()=>{document.getElementById('k4').textContent='13.5';},850);
+    setTimeout(animateBars,400);
+    setTimeout(()=>{document.getElementById('k6').textContent='7 050 000 F';},900);
+  },4300);
+
+  // S3 typing at 10.5s
+  setTimeout(()=>{
+    typeText('searchText','Kofi K',()=>{
+      setTimeout(()=>{
+        document.getElementById('searchText').textContent='';
+      },800);
+    });
+    // New row appears
+    setTimeout(()=>{
+      const r=document.getElementById('newRow');
+      r.style.display='';
+      r.classList.add('new-row');
+    },3200);
+  },10500);
+
+  // S4 score highlight at 17s
+  setTimeout(()=>{
+    const sc=document.getElementById('jeanScore');
+    if(sc){sc.classList.add('highlight');}
+  },17000);
+
+  // S5 finance at 22.5s
+  setTimeout(()=>{
+    document.querySelectorAll('.payment-row').forEach(r=>r.style.opacity=1);
+    animateFinKPIs();
+    setTimeout(()=>animateDonut(72),400);
+  },22500);
+
+  // S6 modules at 28.3s
+  setTimeout(()=>{
+    document.querySelectorAll('.mod').forEach(m=>m.style.opacity=1);
+  },28300);
+}
+
+// Auto-start immediately
+window.addEventListener('load',()=>setTimeout(startDemo,200));
+</script>
+</body>
+</html>

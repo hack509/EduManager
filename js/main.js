@@ -27,7 +27,7 @@ document.addEventListener('DOMContentLoaded', () => {
     burgerBtn.querySelectorAll('span').forEach((s, i) => {
       s.style.transform = open
         ? i === 0 ? 'translateY(7px) rotate(45deg)'
-        : i === 1 ? 'opacity:0'
+        : i === 1 ? ''
         : 'translateY(-7px) rotate(-45deg)'
         : '';
       if (i === 1) s.style.opacity = open ? '0' : '1';
