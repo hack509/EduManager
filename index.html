@@ -1,0 +1,812 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description"
+    content="EduManager ERP — La plateforme de gestion scolaire complète pour les établissements africains. Multi-tenant, modulaire, 100% web." />
+  <title>EduManager ERP — Gérez votre établissement en toute simplicité</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+
+<body>
+
+  <!-- ════════════════════════════════════════════ NAVBAR ══ -->
+  <header class="navbar" id="navbar">
+    <div class="container navbar__inner">
+      <a href="#" class="navbar__logo">
+        <div class="logo-icon">
+          <i class="fas fa-graduation-cap"></i>
+        </div>
+        <div class="logo-text">
+          <span class="logo-name">EduManager</span>
+          <span class="logo-tag">ERP Next Gen</span>
+        </div>
+      </a>
+
+      <nav class="navbar__nav" id="navMenu">
+        <a href="#fonctionnalites" class="nav-link">Fonctionnalités</a>
+        <a href="#modules" class="nav-link">Modules</a>
+        <a href="#apercu" class="nav-link">Aperçu</a>
+        <a href="#technologie" class="nav-link">Technologie</a>
+        <a href="#contact" class="nav-link">Contact</a>
+      </nav>
+
+      <div class="navbar__actions">
+        <a href="#contact" class="btn btn--primary">Demander une démo</a>
+        <button class="navbar__burger" id="burgerBtn" aria-label="Menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ════════════════════════════════════════════ HERO ══ -->
+  <section class="hero" id="accueil">
+    <div class="hero__bg-grid"></div>
+    <div class="hero__orb hero__orb--1"></div>
+    <div class="hero__orb hero__orb--2"></div>
+
+    <div class="container hero__inner">
+      <div class="hero__content" data-animate="fade-up">
+        <div class="pill pill--amber">
+          <i class="fas fa-star"></i>
+          Plateforme ERP Scolaire Complète
+        </div>
+
+        <h1 class="hero__headline">
+          Gérez votre<br>
+          <span class="text-gradient">établissement</span><br>
+          en toute simplicité.
+        </h1>
+
+        <p class="hero__sub">
+          EduManager centralise élèves, enseignants, notes, présences,
+          finances et documents dans une seule plateforme intelligente,
+          conçue pour chaque établissement africain.
+        </p>
+
+        <div class="hero__ctas">
+          <a href="#contact" class="btn btn--primary btn--lg">
+            <i class="fas fa-rocket"></i> Commencer gratuitement
+          </a>
+          <a href="#apercu" class="btn btn--outline-light btn--lg">
+            <i class="fas fa-play-circle"></i> Voir la démo
+          </a>
+        </div>
+
+        <div class="hero__stats">
+          <div class="hero__stat">
+            <strong>13+</strong>
+            <span>Modules intégrés</span>
+          </div>
+          <div class="hero__stat-divider"></div>
+          <div class="hero__stat">
+            <strong>∞</strong>
+            <span>Multi-établissements</span>
+          </div>
+          <div class="hero__stat-divider"></div>
+          <div class="hero__stat">
+            <strong>100%</strong>
+            <span>Web · Sans installation</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero__visual" data-animate="fade-left">
+        <div class="browser-frame">
+          <div class="browser-bar">
+            <span class="dot dot--red"></span>
+            <span class="dot dot--yellow"></span>
+            <span class="dot dot--green"></span>
+            <div class="browser-url">
+              <i class="fas fa-lock"></i>
+              gs-excellence.edumanager.ci/dashboard
+            </div>
+          </div>
+          <img src="assets/dashboard.png" alt="EduManager Dashboard" class="browser-screenshot" />
+        </div>
+        <div class="hero__floating hero__floating--1">
+          <i class="fas fa-user-graduate"></i>
+          <div>
+            <strong>+3 élèves</strong>
+            <span>inscrits aujourd'hui</span>
+          </div>
+        </div>
+        <div class="hero__floating hero__floating--2">
+          <div class="check-ring">
+            <i class="fas fa-check"></i>
+          </div>
+          <div>
+            <strong>94%</strong>
+            <span>taux de présence</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="hero__wave">
+      <svg viewBox="0 0 1440 80" preserveAspectRatio="none">
+        <path d="M0,80L0,40Q360,0 720,30Q1080,60 1440,20L1440,80Z" fill="var(--bg-body)" />
+      </svg>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════ SOCIAL PROOF BAR ══ -->
+  <section class="trust-bar">
+    <div class="container trust-bar__inner">
+      <span class="trust-bar__label">Fait confiance par des établissements à travers l'Afrique</span>
+      <div class="trust-bar__logos">
+        <div class="trust-logo"><i class="fas fa-school"></i> Groupe Scolaire Excellence</div>
+        <div class="trust-logo"><i class="fas fa-university"></i> Institut Victor Hugo</div>
+        <div class="trust-logo"><i class="fas fa-building"></i> Complexe Scolaire La Réussite</div>
+        <div class="trust-logo"><i class="fas fa-school"></i> École Saint-Joseph</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════ FONCTIONNALITES ══ -->
+  <section class="features section" id="fonctionnalites">
+    <div class="container">
+      <div class="section-header" data-animate="fade-up">
+        <div class="pill pill--indigo">
+          <i class="fas fa-bolt"></i> Fonctionnalités clés
+        </div>
+        <h2 class="section-title">Tout ce dont votre école a besoin</h2>
+        <p class="section-sub">
+          Des outils puissants qui couvrent chaque aspect de la vie scolaire,
+          pensés pour la réalité africaine.
+        </p>
+      </div>
+
+      <div class="features__grid">
+        <div class="feature-card feature-card--large" data-animate="fade-up" data-delay="0">
+          <div class="feature-card__icon" style="background:var(--blue-light);color:var(--blue);">
+            <i class="fas fa-user-graduate"></i>
+          </div>
+          <h3>Gestion des élèves</h3>
+          <p>Inscriptions, dossiers complets, suivi individuel, historique scolaire multi-années. Recherche instantanée
+            parmi des centaines d'élèves.</p>
+          <ul class="feature-list">
+            <li><i class="fas fa-check"></i> Fiche complète par élève</li>
+            <li><i class="fas fa-check"></i> Historique multi-années</li>
+            <li><i class="fas fa-check"></i> Numéro élève unique</li>
+          </ul>
+        </div>
+
+        <div class="feature-card feature-card--large" data-animate="fade-up" data-delay="100">
+          <div class="feature-card__icon" style="background:var(--purple-light);color:var(--purple);">
+            <i class="fas fa-star"></i>
+          </div>
+          <h3>Notes & Bulletins PDF</h3>
+          <p>Saisie des notes, moyennes pondérées automatiques, classements par classe, bulletins générés en PDF avec le
+            logo de l'école.</p>
+          <ul class="feature-list">
+            <li><i class="fas fa-check"></i> Coefficients configurables</li>
+            <li><i class="fas fa-check"></i> Bulletins PDF auto</li>
+            <li><i class="fas fa-check"></i> Classements et mentions</li>
+          </ul>
+        </div>
+
+        <div class="feature-card" data-animate="fade-up" data-delay="200">
+          <div class="feature-card__icon" style="background:var(--teal-light);color:var(--teal);">
+            <i class="fas fa-clipboard-check"></i>
+          </div>
+          <h3>Présences</h3>
+          <p>Appels numériques, suivi des absences et retards, justificatifs parents, statistiques de présence par
+            classe.</p>
+        </div>
+
+        <div class="feature-card" data-animate="fade-up" data-delay="300">
+          <div class="feature-card__icon" style="background:var(--amber-light);color:var(--amber);">
+            <i class="fas fa-coins"></i>
+          </div>
+          <h3>Finance</h3>
+          <p>Facturation des frais scolaires, suivi des paiements, relances, rapports financiers mensuels et annuels.
+          </p>
+        </div>
+
+        <div class="feature-card" data-animate="fade-up" data-delay="400">
+          <div class="feature-card__icon" style="background:var(--green-light);color:var(--green);">
+            <i class="fas fa-chalkboard-teacher"></i>
+          </div>
+          <h3>Enseignants</h3>
+          <p>Profils, contrats, affectations aux classes et matières, suivi des performances pédagogiques.</p>
+        </div>
+
+        <div class="feature-card" data-animate="fade-up" data-delay="500">
+          <div class="feature-card__icon" style="background:var(--red-light);color:var(--red);">
+            <i class="fas fa-chart-bar"></i>
+          </div>
+          <h3>Rapports & Exports</h3>
+          <p>Tableaux de bord analytiques, exports Excel, rapports de performance par classe, période et matière.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════════ MODULES ══ -->
+  <section class="modules section section--dark" id="modules">
+    <div class="container">
+      <div class="section-header section-header--light" data-animate="fade-up">
+        <div class="pill pill--light">
+          <i class="fas fa-puzzle-piece"></i> 13 Modules disponibles
+        </div>
+        <h2 class="section-title">Activez uniquement ce dont vous avez besoin</h2>
+        <p class="section-sub" style="color:var(--slate-400);">
+          Des modules essentiels toujours actifs aux modules optionnels activables en un clic,
+          EduManager s'adapte à votre établissement.
+        </p>
+      </div>
+
+      <!-- Tabs -->
+      <div class="modules__tabs" data-animate="fade-up">
+        <button class="tab-btn tab-btn--active" data-tab="essentiels">
+          <i class="fas fa-lock"></i> Modules essentiels
+        </button>
+        <button class="tab-btn" data-tab="optionnels">
+          <i class="fas fa-toggle-on"></i> Modules optionnels
+        </button>
+      </div>
+
+      <!-- Essentiels -->
+      <div class="modules__grid tab-panel tab-panel--active" id="tab-essentiels">
+        <div class="module-card" data-animate="scale-in" data-delay="0">
+          <div class="module-card__icon" style="background:#3b82f6;">
+            <i class="fas fa-user-graduate"></i>
+          </div>
+          <div class="module-card__body">
+            <h4>Élèves</h4>
+            <p>Inscriptions, dossiers, suivi individuel, historique scolaire</p>
+          </div>
+          <span class="module-badge module-badge--on">Actif</span>
+        </div>
+
+        <div class="module-card" data-animate="scale-in" data-delay="60">
+          <div class="module-card__icon" style="background:#16a34a;">
+            <i class="fas fa-chalkboard-teacher"></i>
+          </div>
+          <div class="module-card__body">
+            <h4>Enseignants</h4>
+            <p>Profils, contrats, affectations, emplois du temps</p>
+          </div>
+          <span class="module-badge module-badge--on">Actif</span>
+        </div>
+
+        <div class="module-card" data-animate="scale-in" data-delay="120">
+          <div class="module-card__icon" style="background:#7c3aed;">
+            <i class="fas fa-graduation-cap"></i>
+          </div>
+          <div class="module-card__body">
+            <h4>Académique</h4>
+            <p>Années scolaires, classes, matières, niveaux</p>
+          </div>
+          <span class="module-badge module-badge--on">Actif</span>
+        </div>
+
+        <div class="module-card" data-animate="scale-in" data-delay="180">
+          <div class="module-card__icon" style="background:#0d9488;">
+            <i class="fas fa-clipboard-check"></i>
+          </div>
+          <div class="module-card__body">
+            <h4>Présences</h4>
+            <p>Appels, absences, retards, justificatifs parents</p>
+          </div>
+          <span class="module-badge module-badge--on">Actif</span>
+        </div>
+
+        <div class="module-card" data-animate="scale-in" data-delay="240">
+          <div class="module-card__icon" style="background:#d97706;">
+            <i class="fas fa-file-alt"></i>
+          </div>
+          <div class="module-card__body">
+            <h4>Évaluations</h4>
+            <p>Devoirs, examens, saisie des notes en ligne</p>
+          </div>
+          <span class="module-badge module-badge--on">Actif</span>
+        </div>
+
+        <div class="module-card" data-animate="scale-in" data-delay="300">
+          <div class="module-card__icon" style="background:#e11d48;">
+            <i class="fas fa-star"></i>
+          </div>
+          <div class="module-card__body">
+            <h4>Notes & Bulletins</h4>
+            <p>Moyennes pondérées, classements, bulletins PDF</p>
+          </div>
+          <span class="module-badge module-badge--on">Actif</span>
+        </div>
+
+        <div class="module-card" data-animate="scale-in" data-delay="360">
+          <div class="module-card__icon" style="background:#334155;">
+            <i class="fas fa-file-pdf"></i>
+          </div>
+          <div class="module-card__body">
+            <h4>Documents PDF</h4>
+            <p>Bulletins, certificats, attestations en PDF</p>
+          </div>
+          <span class="module-badge module-badge--on">Actif</span>
+        </div>
+
+        <div class="module-card" data-animate="scale-in" data-delay="420">
+          <div class="module-card__icon" style="background:#1e40af;">
+            <i class="fas fa-chart-bar"></i>
+          </div>
+          <div class="module-card__body">
+            <h4>Rapports</h4>
+            <p>Statistiques, exports Excel, tableaux de bord</p>
+          </div>
+          <span class="module-badge module-badge--on">Actif</span>
+        </div>
+      </div>
+
+      <!-- Optionnels -->
+      <div class="modules__grid tab-panel" id="tab-optionnels">
+        <div class="module-card" data-animate="scale-in" data-delay="0">
+          <div class="module-card__icon" style="background:#f59e0b;">
+            <i class="fas fa-coins"></i>
+          </div>
+          <div class="module-card__body">
+            <h4>Finance</h4>
+            <p>Facturation, paiements, suivi des frais scolaires</p>
+          </div>
+          <span class="module-badge module-badge--toggle">Optionnel</span>
+        </div>
+
+        <div class="module-card" data-animate="scale-in" data-delay="80">
+          <div class="module-card__icon" style="background:#a21caf;">
+            <i class="fas fa-book"></i>
+          </div>
+          <div class="module-card__body">
+            <h4>Bibliothèque</h4>
+            <p>Catalogue, prêts, retours, gestion du fonds</p>
+          </div>
+          <span class="module-badge module-badge--toggle">Optionnel</span>
+        </div>
+
+        <div class="module-card" data-animate="scale-in" data-delay="160">
+          <div class="module-card__icon" style="background:#0284c7;">
+            <i class="fas fa-envelope"></i>
+          </div>
+          <div class="module-card__body">
+            <h4>Communications</h4>
+            <p>Messagerie interne, notifications parents, SMS</p>
+          </div>
+          <span class="module-badge module-badge--toggle">Optionnel</span>
+        </div>
+
+        <div class="module-card module-card--soon" data-animate="scale-in" data-delay="240">
+          <div class="module-card__icon" style="background:#64748b;">
+            <i class="fas fa-bus"></i>
+          </div>
+          <div class="module-card__body">
+            <h4>Transport</h4>
+            <p>Circuits scolaires, gestion des véhicules</p>
+          </div>
+          <span class="module-badge module-badge--soon">Bientôt</span>
+        </div>
+
+        <div class="module-card module-card--soon" data-animate="scale-in" data-delay="320">
+          <div class="module-card__icon" style="background:#64748b;">
+            <i class="fas fa-bed"></i>
+          </div>
+          <div class="module-card__body">
+            <h4>Internat</h4>
+            <p>Gestion de l'internat et des chambres</p>
+          </div>
+          <span class="module-badge module-badge--soon">Bientôt</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════════ APERCU ══ -->
+  <section class="preview section" id="apercu">
+    <div class="container">
+      <div class="section-header" data-animate="fade-up">
+        <div class="pill pill--indigo">
+          <i class="fas fa-desktop"></i> Aperçu du logiciel
+        </div>
+        <h2 class="section-title">Une interface pensée pour l'efficacité</h2>
+        <p class="section-sub">
+          Tableau de bord intuitif, navigation fluide, données centralisées.
+          Tout est là, à portée de clic.
+        </p>
+      </div>
+
+      <div class="preview__showcase" data-animate="fade-up">
+        <div class="preview__browser">
+          <div class="preview__bar">
+            <span class="dot dot--red"></span>
+            <span class="dot dot--yellow"></span>
+            <span class="dot dot--green"></span>
+            <div class="preview__url">
+              <i class="fas fa-lock" style="color:var(--indigo);"></i>
+              gs-excellence.edumanager.ci/dashboard
+            </div>
+          </div>
+          <img src="assets/dashboard.png" alt="Tableau de bord EduManager" class="preview__img" />
+        </div>
+
+        <!-- Callouts -->
+        <div class="callout callout--top-left" data-animate="fade-up" data-delay="300">
+          <i class="fas fa-chart-line" style="color:var(--indigo);"></i>
+          <div>
+            <strong>KPIs en temps réel</strong>
+            <span>Élèves, présences, finances</span>
+          </div>
+        </div>
+        <div class="callout callout--top-right" data-animate="fade-up" data-delay="400">
+          <i class="fas fa-bolt" style="color:var(--amber);"></i>
+          <div>
+            <strong>Accès rapide</strong>
+            <span>6 actions en un clic</span>
+          </div>
+        </div>
+        <div class="callout callout--bottom-left" data-animate="fade-up" data-delay="500">
+          <i class="fas fa-coins" style="color:var(--green);"></i>
+          <div>
+            <strong>Finance intégrée</strong>
+            <span>72% collecté ce mois</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Feature tabs preview -->
+      <div class="preview__tabs-section" data-animate="fade-up">
+        <div class="preview__tab-nav">
+          <button class="preview-tab active" data-screen="dashboard">
+            <i class="fas fa-tachometer-alt"></i> Tableau de bord
+          </button>
+          <button class="preview-tab" data-screen="eleves">
+            <i class="fas fa-user-graduate"></i> Élèves
+          </button>
+          <button class="preview-tab" data-screen="notes">
+            <i class="fas fa-star"></i> Notes
+          </button>
+          <button class="preview-tab" data-screen="finance">
+            <i class="fas fa-coins"></i> Finance
+          </button>
+        </div>
+        <div class="preview__tab-desc">
+          <div class="preview__desc active" id="desc-dashboard">
+            <h3>Tableau de bord centralisé</h3>
+            <p>Toutes vos métriques clés en un coup d'œil : élèves, présences, moyennes, finances. Des graphiques
+              dynamiques pour suivre la progression par classe et par trimestre.</p>
+            <a href="#contact" class="btn btn--primary">Voir en direct <i class="fas fa-arrow-right"></i></a>
+          </div>
+          <div class="preview__desc" id="desc-eleves">
+            <h3>Gestion complète des élèves</h3>
+            <p>Inscriptions simplifiées, fiches élèves détaillées, historique multi-années, numéros uniques
+              auto-générés. Recherche et filtres avancés pour retrouver n'importe quel élève en secondes.</p>
+            <a href="#contact" class="btn btn--primary">Voir en direct <i class="fas fa-arrow-right"></i></a>
+          </div>
+          <div class="preview__desc" id="desc-notes">
+            <h3>Notes, bulletins et classements</h3>
+            <p>Saisie des notes par devoir et examen, calcul automatique des moyennes avec coefficients, génération de
+              bulletins PDF professionnels avec le logo de votre école, classements par classe.</p>
+            <a href="#contact" class="btn btn--primary">Voir en direct <i class="fas fa-arrow-right"></i></a>
+          </div>
+          <div class="preview__desc" id="desc-finance">
+            <h3>Finance scolaire sous contrôle</h3>
+            <p>Suivi des frais scolaires, encaissement des paiements, relances automatiques, rapports financiers
+              mensuels. Visualisez le taux de recouvrement en temps réel.</p>
+            <a href="#contact" class="btn btn--primary">Voir en direct <i class="fas fa-arrow-right"></i></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════ CHIFFRES ══ -->
+  <section class="stats-section section">
+    <div class="container">
+      <div class="stats-grid">
+        <div class="stat-item" data-animate="fade-up" data-delay="0">
+          <div class="stat-item__number" data-count="13">0</div>
+          <div class="stat-item__label">Modules intégrés</div>
+        </div>
+        <div class="stat-item" data-animate="fade-up" data-delay="100">
+          <div class="stat-item__number" data-count="100">0</div>
+          <div class="stat-item__label">% Web — sans installation</div>
+        </div>
+        <div class="stat-item" data-animate="fade-up" data-delay="200">
+          <div class="stat-item__number" data-count="94">0</div>
+          <div class="stat-item__label">% Taux de présence moyen</div>
+        </div>
+        <div class="stat-item" data-animate="fade-up" data-delay="300">
+          <div class="stat-item__number" data-count="5">0</div>
+          <div class="stat-item__label">Minutes pour démarrer</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════ TECHNO ══ -->
+  <section class="tech section section--dark" id="technologie">
+    <div class="container">
+      <div class="tech__inner">
+        <div class="tech__left" data-animate="fade-right">
+          <div class="pill pill--light">
+            <i class="fas fa-code"></i> Stack Technique
+          </div>
+          <h2 class="section-title" style="color:white;">Technologies modernes<br>et éprouvées</h2>
+          <p style="color:var(--slate-400);line-height:1.7;margin-bottom:32px;">
+            Construit sur des bases solides pour garantir performance,
+            sécurité et évolutivité à long terme. Architecture multi-tenant
+            avec isolation totale des données par établissement.
+          </p>
+
+          <div class="tech__stack">
+            <div class="tech-item">
+              <div class="tech-item__icon">🐍</div>
+              <div>
+                <strong>Python / Flask 3.1</strong>
+                <span>Backend robuste & rapide</span>
+              </div>
+            </div>
+            <div class="tech-item">
+              <div class="tech-item__icon">🗃</div>
+              <div>
+                <strong>PostgreSQL + SQLAlchemy 2.x</strong>
+                <span>Base de données relationnelle</span>
+              </div>
+            </div>
+            <div class="tech-item">
+              <div class="tech-item__icon">⚡</div>
+              <div>
+                <strong>HTMX + Alpine.js</strong>
+                <span>UI réactive sans framework lourd</span>
+              </div>
+            </div>
+            <div class="tech-item">
+              <div class="tech-item__icon">🎨</div>
+              <div>
+                <strong>TailwindCSS</strong>
+                <span>Design system cohérent</span>
+              </div>
+            </div>
+            <div class="tech-item">
+              <div class="tech-item__icon">📄</div>
+              <div>
+                <strong>WeasyPrint</strong>
+                <span>Génération PDF haute qualité</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="tech__right" data-animate="fade-left">
+          <div class="benefits-list">
+            <div class="benefit">
+              <div class="benefit__icon" style="background:rgba(16,185,129,0.15);color:#10b981;">
+                <i class="fas fa-shield-alt"></i>
+              </div>
+              <div>
+                <h4>Sécurité multi-tenant</h4>
+                <p>Isolation totale des données. RBAC granulaire avec rôles et permissions par utilisateur.</p>
+              </div>
+            </div>
+            <div class="benefit">
+              <div class="benefit__icon" style="background:rgba(99,102,241,0.15);color:#818cf8;">
+                <i class="fas fa-mobile-alt"></i>
+              </div>
+              <div>
+                <h4>100% Responsive</h4>
+                <p>Interface adaptée à tous les écrans — ordinateur, tablette et smartphone.</p>
+              </div>
+            </div>
+            <div class="benefit">
+              <div class="benefit__icon" style="background:rgba(251,191,36,0.15);color:#fbbf24;">
+                <i class="fas fa-file-pdf"></i>
+              </div>
+              <div>
+                <h4>PDF automatique</h4>
+                <p>Bulletins, attestations et certificats générés instantanément avec le logo de l'école.</p>
+              </div>
+            </div>
+            <div class="benefit">
+              <div class="benefit__icon" style="background:rgba(236,72,153,0.15);color:#f472b6;">
+                <i class="fas fa-brain"></i>
+              </div>
+              <div>
+                <h4>Calculs automatiques</h4>
+                <p>Moyennes pondérées, classements, mentions calculés en temps réel à chaque saisie.</p>
+              </div>
+            </div>
+            <div class="benefit">
+              <div class="benefit__icon" style="background:rgba(20,184,166,0.15);color:#2dd4bf;">
+                <i class="fas fa-plug"></i>
+              </div>
+              <div>
+                <h4>Modules à la carte</h4>
+                <p>Activez uniquement les modules dont vous avez besoin. Désactivez d'un clic.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════ TÉMOIGNAGES ══ -->
+  <section class="testimonials section" id="temoignages">
+    <div class="container">
+      <div class="section-header" data-animate="fade-up">
+        <div class="pill pill--indigo">
+          <i class="fas fa-quote-left"></i> Témoignages
+        </div>
+        <h2 class="section-title">Ce qu'ils disent de nous</h2>
+      </div>
+      <div class="testimonials__grid testimonials__grid--two">
+        <div class="testimonial-card" data-animate="fade-up" data-delay="0">
+          <div class="testimonial-card__stars">
+            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i
+              class="fas fa-star"></i><i class="fas fa-star"></i>
+          </div>
+          <p>"EduManager a complètement transformé la gestion de notre structure. Le suivi des dossiers, les rapports et
+            la centralisation des données nous font gagner un temps précieux au quotidien."</p>
+          <div class="testimonial-card__author">
+            <div class="avatar" style="background:linear-gradient(135deg,#6366f1,#8b5cf6);">BD</div>
+            <div>
+              <strong>Berthony DESIR</strong>
+              <span>PDG — Ciento-Immobilier</span>
+            </div>
+          </div>
+        </div>
+        <div class="testimonial-card" data-animate="fade-up" data-delay="150">
+          <div class="testimonial-card__stars">
+            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i
+              class="fas fa-star"></i><i class="fas fa-star"></i>
+          </div>
+          <p>"Grâce à EduManager, la gestion de notre établissement est devenue fluide et transparente. Les bulletins
+            PDF et le suivi des présences ont facilité notre travail au quotidien."</p>
+          <div class="testimonial-card__author">
+            <div class="avatar" style="background:linear-gradient(135deg,#10b981,#0d9488);">RG</div>
+            <div>
+              <strong>Mme Rosette Gabilus</strong>
+              <span>Dr — Berceau des petits</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════ CTA / CONTACT ══ -->
+  <section class="cta-section section" id="contact">
+    <div class="container">
+      <div class="cta-box" data-animate="fade-up">
+        <div class="cta-box__orb cta-box__orb--1"></div>
+        <div class="cta-box__orb cta-box__orb--2"></div>
+
+        <div class="cta-box__content">
+          <div class="pill pill--amber" style="margin-bottom:20px;">
+            <i class="fas fa-envelope"></i> Contactez-nous
+          </div>
+          <h2>Prêt à moderniser<br>votre établissement ?</h2>
+          <p>Demandez une démo gratuite et découvrez comment EduManager peut transformer la gestion de votre école en
+            quelques jours.</p>
+        </div>
+
+        <form class="cta-form" id="contactForm" novalidate>
+          <div class="form-row">
+            <div class="form-group">
+              <label>Nom de l'établissement</label>
+              <input type="text" placeholder="Groupe Scolaire Excellence" id="schoolName" required />
+            </div>
+            <div class="form-group">
+              <label>Votre nom</label>
+              <input type="text" placeholder="Jean Kouadio" id="contactName" required />
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label>Email</label>
+              <input type="email" placeholder="contact@ecole.ci" id="contactEmail" required />
+            </div>
+            <div class="form-group">
+              <label>Téléphone</label>
+              <input type="tel" placeholder="+225 07 00 00 00 00" id="contactPhone" />
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Message (optionnel)</label>
+            <textarea placeholder="Décrivez votre établissement et vos besoins..." rows="3"
+              id="contactMessage"></textarea>
+          </div>
+          <button type="submit" class="btn btn--primary btn--lg btn--full">
+            <i class="fas fa-paper-plane"></i> Envoyer ma demande de démo
+          </button>
+          <div class="form-success" id="formSuccess">
+            <i class="fas fa-check-circle"></i>
+            Merci ! Nous vous contacterons dans les 24h.
+          </div>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════════ FOOTER ══ -->
+  <footer class="footer">
+    <div class="container footer__inner">
+      <div class="footer__brand">
+        <div class="navbar__logo">
+          <div class="logo-icon">
+            <i class="fas fa-graduation-cap"></i>
+          </div>
+          <div class="logo-text">
+            <span class="logo-name">EduManager</span>
+            <span class="logo-tag">ERP Next Gen</span>
+          </div>
+        </div>
+        <p>La plateforme de gestion scolaire complète pour les établissements africains.</p>
+        <div class="footer__contact">
+          <a href="mailto:clubcodinggonaives@gmail.com">
+            <i class="fas fa-envelope"></i> desulmajohnsley@gmail.com
+          </a>
+          <a href="https://wa.me/50941444671" target="_blank" rel="noopener">
+            <i class="fab fa-whatsapp"></i> +509 41 44 46 71
+          </a>
+          <span><i class="fas fa-map-marker-alt"></i> Gonaïves, Haïti</span>
+        </div>
+      </div>
+
+      <div class="footer__links">
+        <div class="footer__col">
+          <h5>Produit</h5>
+          <a href="#fonctionnalites">Fonctionnalités</a>
+          <a href="#modules">Modules</a>
+          <a href="#apercu">Aperçu</a>
+          <a href="#contact">Démo gratuite</a>
+        </div>
+        <div class="footer__col">
+          <h5>Modules</h5>
+          <a href="#modules">Élèves & Enseignants</a>
+          <a href="#modules">Notes & Bulletins</a>
+          <a href="#modules">Finance</a>
+          <a href="#modules">Bibliothèque</a>
+        </div>
+        <div class="footer__col">
+          <h5>Technologie</h5>
+          <a href="#technologie">Flask 3.1</a>
+          <a href="#technologie">PostgreSQL</a>
+          <a href="#technologie">HTMX + Alpine.js</a>
+          <a href="#technologie">TailwindCSS</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer__bottom">
+      <div class="container footer__bottom-inner">
+        <span>© 2026 EduManager ERP — Tous droits réservés</span>
+        <div class="footer__badges">
+          <span class="badge-tech">v2.0.0</span>
+          <span class="badge-tech badge-tech--green">Production Ready</span>
+          <span class="badge-tech">Multi-tenant SaaS</span>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- WhatsApp floating button -->
+  <a href="https://wa.me/50941444671" target="_blank" rel="noopener" class="whatsapp-btn"
+    aria-label="Contacter sur WhatsApp">
+    <i class="fab fa-whatsapp"></i>
+    <span class="whatsapp-btn__tooltip">Chattez avec nous</span>
+  </a>
+
+  <!-- Back to top -->
+  <button class="back-top" id="backTop" aria-label="Retour en haut">
+    <i class="fas fa-arrow-up"></i>
+  </button>
+
+  <script src="js/main.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,641 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>EduManager ERP — Flyer</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <style>
+    * { font-family: 'Inter', sans-serif; }
+    body { margin: 0; background: #f1f5f9; }
+
+    /* Page: 1240 × 1754 px (A4 @ 150dpi) */
+    .page {
+      width: 1240px;
+      min-height: 1754px;
+      margin: 40px auto;
+      background: #ffffff;
+      overflow: hidden;
+      box-shadow: 0 25px 80px rgba(0,0,0,0.18);
+    }
+
+    .gradient-hero {
+      background: linear-gradient(135deg, #1e1b4b 0%, #312e81 35%, #4f46e5 70%, #6366f1 100%);
+    }
+    .gradient-accent {
+      background: linear-gradient(135deg, #f59e0b, #f97316);
+    }
+    .text-gradient {
+      background: linear-gradient(135deg, #fbbf24, #f97316);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .module-card {
+      border-radius: 16px;
+      padding: 28px;
+      position: relative;
+      overflow: hidden;
+    }
+    .module-card::before {
+      content: '';
+      position: absolute;
+      top: -20px; right: -20px;
+      width: 80px; height: 80px;
+      border-radius: 50%;
+      opacity: 0.12;
+    }
+
+    .stat-ring {
+      width: 90px; height: 90px;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 28px; font-weight: 900;
+      position: relative;
+    }
+
+    .screen-mock {
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.35);
+      border: 1px solid rgba(255,255,255,0.15);
+    }
+    .screen-bar {
+      background: #1e293b;
+      height: 32px;
+      display: flex;
+      align-items: center;
+      padding: 0 12px;
+      gap: 6px;
+    }
+    .dot { width: 10px; height: 10px; border-radius: 50%; }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 14px;
+      border-radius: 100px;
+      font-size: 13px;
+      font-weight: 600;
+    }
+  </style>
+</head>
+<body>
+
+<div class="page">
+
+  <!-- ══════════════════════════════════════════════════════ HERO ══ -->
+  <div class="gradient-hero text-white" style="padding: 60px 70px 0;">
+
+    <!-- Top bar -->
+    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:60px;">
+      <div style="display:flex; align-items:center; gap:16px;">
+        <div style="width:52px;height:52px;background:rgba(255,255,255,0.15);border-radius:14px;
+                    display:flex;align-items:center;justify-content:center;
+                    border:2px solid rgba(255,255,255,0.25);">
+          <i class="fas fa-graduation-cap" style="font-size:24px;color:#fbbf24;"></i>
+        </div>
+        <div>
+          <div style="font-size:24px;font-weight:800;letter-spacing:-0.5px;">EduManager</div>
+          <div style="font-size:12px;color:rgba(255,255,255,0.55);font-weight:500;letter-spacing:3px;text-transform:uppercase;">ERP Next Gen</div>
+        </div>
+      </div>
+      <div style="display:flex;gap:12px;">
+        <span class="badge" style="background:rgba(251,191,36,0.18);border:1px solid rgba(251,191,36,0.35);color:#fde68a;">
+          <i class="fas fa-circle" style="font-size:7px;color:#fbbf24;"></i> Version 2.0
+        </span>
+        <span class="badge" style="background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.2);color:rgba(255,255,255,0.8);">
+          <i class="fas fa-cloud"></i> SaaS Multi-tenant
+        </span>
+      </div>
+    </div>
+
+    <!-- Hero content + screen -->
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:end;">
+      <!-- Left: Text -->
+      <div>
+        <div class="badge" style="background:rgba(251,191,36,0.15);border:1px solid rgba(251,191,36,0.3);
+                                   color:#fbbf24;margin-bottom:28px;">
+          <i class="fas fa-star" style="font-size:11px;"></i> Plateforme ERP Scolaire Complète
+        </div>
+
+        <h1 style="font-size:62px;font-weight:900;line-height:1.0;letter-spacing:-2px;margin:0 0 24px;">
+          Gérez votre<br>
+          <span class="text-gradient">établissement</span><br>
+          en toute simplicité.
+        </h1>
+
+        <p style="font-size:18px;color:rgba(255,255,255,0.7);line-height:1.7;margin:0 0 40px;max-width:460px;">
+          EduManager centralise élèves, enseignants, notes, présences,
+          finances et documents dans une seule plateforme intelligente,
+          adaptée à chaque établissement africain.
+        </p>
+
+        <!-- Key stats -->
+        <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:20px;">
+          <div style="text-align:center;background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.12);
+                      border-radius:14px;padding:20px 16px;">
+            <div style="font-size:36px;font-weight:900;color:#fbbf24;">13+</div>
+            <div style="font-size:12px;color:rgba(255,255,255,0.6);font-weight:500;margin-top:4px;">Modules intégrés</div>
+          </div>
+          <div style="text-align:center;background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.12);
+                      border-radius:14px;padding:20px 16px;">
+            <div style="font-size:36px;font-weight:900;color:#34d399;">∞</div>
+            <div style="font-size:12px;color:rgba(255,255,255,0.6);font-weight:500;margin-top:4px;">Multi-établissements</div>
+          </div>
+          <div style="text-align:center;background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.12);
+                      border-radius:14px;padding:20px 16px;">
+            <div style="font-size:36px;font-weight:900;color:#a78bfa;">100%</div>
+            <div style="font-size:12px;color:rgba(255,255,255,0.6);font-weight:500;margin-top:4px;">Web — sans install</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right: Dashboard screen mock -->
+      <div>
+        <div class="screen-mock">
+          <div class="screen-bar">
+            <div class="dot" style="background:#ef4444;"></div>
+            <div class="dot" style="background:#f59e0b;"></div>
+            <div class="dot" style="background:#22c55e;"></div>
+            <div style="flex:1;text-align:center;color:rgba(255,255,255,0.35);font-size:11px;">
+              edumanager.ci/dashboard
+            </div>
+          </div>
+          <!-- Mini dashboard UI -->
+          <div style="background:#0f172a;display:flex;height:340px;">
+            <!-- Sidebar -->
+            <div style="width:160px;background:#1e293b;padding:16px 12px;flex-shrink:0;">
+              <div style="margin-bottom:16px;">
+                <div style="font-size:8px;color:#475569;text-transform:uppercase;letter-spacing:2px;margin-bottom:8px;">Principal</div>
+                <div style="background:rgba(99,102,241,0.25);border-radius:6px;padding:6px 8px;margin-bottom:4px;
+                             color:#818cf8;font-size:10px;font-weight:600;display:flex;align-items:center;gap:6px;">
+                  <i class="fas fa-tachometer-alt" style="font-size:9px;"></i> Tableau de bord
+                </div>
+                <div style="color:#64748b;font-size:10px;padding:5px 8px;margin-bottom:2px;display:flex;align-items:center;gap:6px;">
+                  <i class="fas fa-user-graduate" style="font-size:9px;"></i> Élèves
+                </div>
+                <div style="color:#64748b;font-size:10px;padding:5px 8px;margin-bottom:2px;display:flex;align-items:center;gap:6px;">
+                  <i class="fas fa-chalkboard-teacher" style="font-size:9px;"></i> Enseignants
+                </div>
+                <div style="color:#64748b;font-size:10px;padding:5px 8px;margin-bottom:2px;display:flex;align-items:center;gap:6px;">
+                  <i class="fas fa-graduation-cap" style="font-size:9px;"></i> Académique
+                </div>
+                <div style="color:#64748b;font-size:10px;padding:5px 8px;margin-bottom:2px;display:flex;align-items:center;gap:6px;">
+                  <i class="fas fa-clipboard-check" style="font-size:9px;"></i> Présences
+                </div>
+                <div style="color:#64748b;font-size:10px;padding:5px 8px;margin-bottom:2px;display:flex;align-items:center;gap:6px;">
+                  <i class="fas fa-file-alt" style="font-size:9px;"></i> Évaluations
+                </div>
+                <div style="color:#64748b;font-size:10px;padding:5px 8px;margin-bottom:2px;display:flex;align-items:center;gap:6px;">
+                  <i class="fas fa-coins" style="font-size:9px;"></i> Finance
+                </div>
+                <div style="color:#64748b;font-size:10px;padding:5px 8px;display:flex;align-items:center;gap:6px;">
+                  <i class="fas fa-chart-bar" style="font-size:9px;"></i> Rapports
+                </div>
+              </div>
+            </div>
+            <!-- Main content -->
+            <div style="flex:1;padding:16px;overflow:hidden;">
+              <!-- Top bar -->
+              <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;">
+                <div style="color:#e2e8f0;font-size:14px;font-weight:700;">Tableau de bord</div>
+                <div style="background:#6366f1;color:white;font-size:9px;padding:4px 10px;border-radius:6px;font-weight:600;">
+                  Groupe Scolaire Excellence
+                </div>
+              </div>
+              <!-- Stats row -->
+              <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:12px;">
+                <div style="background:#1e293b;border-radius:8px;padding:12px;border-left:3px solid #6366f1;">
+                  <div style="font-size:20px;font-weight:800;color:#e2e8f0;">40</div>
+                  <div style="font-size:8px;color:#64748b;margin-top:2px;">Élèves</div>
+                </div>
+                <div style="background:#1e293b;border-radius:8px;padding:12px;border-left:3px solid #10b981;">
+                  <div style="font-size:20px;font-weight:800;color:#e2e8f0;">4</div>
+                  <div style="font-size:8px;color:#64748b;margin-top:2px;">Enseignants</div>
+                </div>
+                <div style="background:#1e293b;border-radius:8px;padding:12px;border-left:3px solid #f59e0b;">
+                  <div style="font-size:20px;font-weight:800;color:#e2e8f0;">6</div>
+                  <div style="font-size:8px;color:#64748b;margin-top:2px;">Classes</div>
+                </div>
+                <div style="background:#1e293b;border-radius:8px;padding:12px;border-left:3px solid #ef4444;">
+                  <div style="font-size:20px;font-weight:800;color:#e2e8f0;">13.5</div>
+                  <div style="font-size:8px;color:#64748b;margin-top:2px;">Moy. générale</div>
+                </div>
+              </div>
+              <!-- Chart mock -->
+              <div style="background:#1e293b;border-radius:8px;padding:12px;margin-bottom:8px;">
+                <div style="font-size:9px;color:#94a3b8;margin-bottom:8px;font-weight:600;">Progression des notes — 2024/2025</div>
+                <div style="display:flex;align-items:flex-end;gap:6px;height:60px;">
+                  <div style="flex:1;background:linear-gradient(to top,#6366f1,#818cf8);border-radius:3px 3px 0 0;height:70%;"></div>
+                  <div style="flex:1;background:linear-gradient(to top,#6366f1,#818cf8);border-radius:3px 3px 0 0;height:55%;"></div>
+                  <div style="flex:1;background:linear-gradient(to top,#6366f1,#818cf8);border-radius:3px 3px 0 0;height:80%;"></div>
+                  <div style="flex:1;background:linear-gradient(to top,#6366f1,#818cf8);border-radius:3px 3px 0 0;height:65%;"></div>
+                  <div style="flex:1;background:linear-gradient(to top,#6366f1,#818cf8);border-radius:3px 3px 0 0;height:90%;"></div>
+                  <div style="flex:1;background:linear-gradient(to top,#f59e0b,#fbbf24);border-radius:3px 3px 0 0;height:75%;"></div>
+                  <div style="flex:1;background:#273344;border-radius:3px 3px 0 0;height:50%;border:1px dashed #334155;"></div>
+                  <div style="flex:1;background:#273344;border-radius:3px 3px 0 0;height:40%;border:1px dashed #334155;"></div>
+                </div>
+              </div>
+              <!-- Bottom row -->
+              <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;">
+                <div style="background:#1e293b;border-radius:8px;padding:10px;">
+                  <div style="font-size:8px;color:#94a3b8;font-weight:600;margin-bottom:6px;">Paiements récents</div>
+                  <div style="display:flex;flex-direction:column;gap:4px;">
+                    <div style="display:flex;justify-content:space-between;color:#64748b;font-size:8px;">
+                      <span style="color:#e2e8f0;">Kofi Kouadio</span><span style="color:#10b981;">175 000 F</span>
+                    </div>
+                    <div style="display:flex;justify-content:space-between;font-size:8px;">
+                      <span style="color:#e2e8f0;">Marie Bamba</span><span style="color:#10b981;">175 000 F</span>
+                    </div>
+                    <div style="display:flex;justify-content:space-between;font-size:8px;">
+                      <span style="color:#e2e8f0;">Jean Traoré</span><span style="color:#f59e0b;">En attente</span>
+                    </div>
+                  </div>
+                </div>
+                <div style="background:#1e293b;border-radius:8px;padding:10px;">
+                  <div style="font-size:8px;color:#94a3b8;font-weight:600;margin-bottom:6px;">Taux de présence</div>
+                  <div style="text-align:center;padding:8px 0;">
+                    <div style="font-size:28px;font-weight:900;color:#10b981;">94%</div>
+                    <div style="font-size:8px;color:#64748b;">Ce trimestre</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bottom wave decoration -->
+    <div style="height:50px;margin-top:40px;">
+      <svg viewBox="0 0 1240 50" preserveAspectRatio="none" style="width:100%;height:100%;">
+        <path d="M0,50 L0,20 Q310,0 620,20 Q930,40 1240,15 L1240,50 Z" fill="white"/>
+      </svg>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════════════ MODULES ══ -->
+  <div style="padding:60px 70px 50px;">
+    <div style="text-align:center;margin-bottom:50px;">
+      <div class="badge" style="background:#ede9fe;color:#7c3aed;border:none;margin-bottom:16px;">
+        <i class="fas fa-puzzle-piece"></i> 13 Modules Disponibles
+      </div>
+      <h2 style="font-size:40px;font-weight:800;color:#0f172a;letter-spacing:-1px;margin:0 0 14px;">
+        Tout ce dont votre école a besoin
+      </h2>
+      <p style="font-size:17px;color:#64748b;max-width:600px;margin:0 auto;line-height:1.6;">
+        Des modules essentiels aux fonctionnalités avancées, EduManager couvre
+        l'intégralité de la gestion scolaire.
+      </p>
+    </div>
+
+    <!-- Module grid 4×3 -->
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:20px;">
+
+      <!-- Students -->
+      <div class="module-card" style="background:#eff6ff;border:1px solid #bfdbfe;">
+        <div style="width:44px;height:44px;background:#3b82f6;border-radius:10px;
+                    display:flex;align-items:center;justify-content:center;margin-bottom:14px;">
+          <i class="fas fa-user-graduate" style="color:white;font-size:20px;"></i>
+        </div>
+        <div style="font-size:15px;font-weight:700;color:#1e40af;margin-bottom:6px;">Élèves</div>
+        <div style="font-size:12px;color:#3b82f6;line-height:1.5;">
+          Inscriptions, dossiers, suivi individuel, historique scolaire
+        </div>
+        <div style="margin-top:12px;font-size:10px;color:#93c5fd;font-weight:600;text-transform:uppercase;letter-spacing:1px;">
+          <i class="fas fa-check-circle"></i> Module essentiel
+        </div>
+      </div>
+
+      <!-- Teachers -->
+      <div class="module-card" style="background:#f0fdf4;border:1px solid #bbf7d0;">
+        <div style="width:44px;height:44px;background:#16a34a;border-radius:10px;
+                    display:flex;align-items:center;justify-content:center;margin-bottom:14px;">
+          <i class="fas fa-chalkboard-teacher" style="color:white;font-size:20px;"></i>
+        </div>
+        <div style="font-size:15px;font-weight:700;color:#14532d;margin-bottom:6px;">Enseignants</div>
+        <div style="font-size:12px;color:#16a34a;line-height:1.5;">
+          Profils, contrats, affectations, emplois du temps
+        </div>
+        <div style="margin-top:12px;font-size:10px;color:#86efac;font-weight:600;text-transform:uppercase;letter-spacing:1px;">
+          <i class="fas fa-check-circle"></i> Module essentiel
+        </div>
+      </div>
+
+      <!-- Academics -->
+      <div class="module-card" style="background:#faf5ff;border:1px solid #e9d5ff;">
+        <div style="width:44px;height:44px;background:#7c3aed;border-radius:10px;
+                    display:flex;align-items:center;justify-content:center;margin-bottom:14px;">
+          <i class="fas fa-graduation-cap" style="color:white;font-size:20px;"></i>
+        </div>
+        <div style="font-size:15px;font-weight:700;color:#4c1d95;margin-bottom:6px;">Académique</div>
+        <div style="font-size:12px;color:#7c3aed;line-height:1.5;">
+          Années scolaires, classes, matières, niveaux
+        </div>
+        <div style="margin-top:12px;font-size:10px;color:#c4b5fd;font-weight:600;text-transform:uppercase;letter-spacing:1px;">
+          <i class="fas fa-check-circle"></i> Module essentiel
+        </div>
+      </div>
+
+      <!-- Attendance -->
+      <div class="module-card" style="background:#f0fdfa;border:1px solid #99f6e4;">
+        <div style="width:44px;height:44px;background:#0d9488;border-radius:10px;
+                    display:flex;align-items:center;justify-content:center;margin-bottom:14px;">
+          <i class="fas fa-clipboard-check" style="color:white;font-size:20px;"></i>
+        </div>
+        <div style="font-size:15px;font-weight:700;color:#134e4a;margin-bottom:6px;">Présences</div>
+        <div style="font-size:12px;color:#0d9488;line-height:1.5;">
+          Appels, absences, retards, justificatifs parents
+        </div>
+        <div style="margin-top:12px;font-size:10px;color:#5eead4;font-weight:600;text-transform:uppercase;letter-spacing:1px;">
+          <i class="fas fa-check-circle"></i> Module essentiel
+        </div>
+      </div>
+
+      <!-- Exams -->
+      <div class="module-card" style="background:#fffbeb;border:1px solid #fde68a;">
+        <div style="width:44px;height:44px;background:#d97706;border-radius:10px;
+                    display:flex;align-items:center;justify-content:center;margin-bottom:14px;">
+          <i class="fas fa-file-alt" style="color:white;font-size:20px;"></i>
+        </div>
+        <div style="font-size:15px;font-weight:700;color:#78350f;margin-bottom:6px;">Évaluations</div>
+        <div style="font-size:12px;color:#d97706;line-height:1.5;">
+          Devoirs, examens, saisie des notes en ligne
+        </div>
+        <div style="margin-top:12px;font-size:10px;color:#fcd34d;font-weight:600;text-transform:uppercase;letter-spacing:1px;">
+          <i class="fas fa-check-circle"></i> Module essentiel
+        </div>
+      </div>
+
+      <!-- Grading -->
+      <div class="module-card" style="background:#fff1f2;border:1px solid #fecdd3;">
+        <div style="width:44px;height:44px;background:#e11d48;border-radius:10px;
+                    display:flex;align-items:center;justify-content:center;margin-bottom:14px;">
+          <i class="fas fa-star" style="color:white;font-size:20px;"></i>
+        </div>
+        <div style="font-size:15px;font-weight:700;color:#881337;margin-bottom:6px;">Notes & Bulletins</div>
+        <div style="font-size:12px;color:#e11d48;line-height:1.5;">
+          Moyennes pondérées, classements, bulletins PDF
+        </div>
+        <div style="margin-top:12px;font-size:10px;color:#fda4af;font-weight:600;text-transform:uppercase;letter-spacing:1px;">
+          <i class="fas fa-check-circle"></i> Module essentiel
+        </div>
+      </div>
+
+      <!-- Finance -->
+      <div class="module-card" style="background:#fffbeb;border:1px solid #fde68a;">
+        <div style="width:44px;height:44px;background:#f59e0b;border-radius:10px;
+                    display:flex;align-items:center;justify-content:center;margin-bottom:14px;">
+          <i class="fas fa-coins" style="color:white;font-size:20px;"></i>
+        </div>
+        <div style="font-size:15px;font-weight:700;color:#78350f;margin-bottom:6px;">Finance</div>
+        <div style="font-size:12px;color:#f59e0b;line-height:1.5;">
+          Facturation, paiements, frais scolaires, rapports
+        </div>
+        <div style="margin-top:12px;font-size:10px;color:#fcd34d;font-weight:600;text-transform:uppercase;letter-spacing:1px;">
+          <i class="fas fa-toggle-on"></i> Module optionnel
+        </div>
+      </div>
+
+      <!-- Library -->
+      <div class="module-card" style="background:#fdf4ff;border:1px solid #f0abfc;">
+        <div style="width:44px;height:44px;background:#a21caf;border-radius:10px;
+                    display:flex;align-items:center;justify-content:center;margin-bottom:14px;">
+          <i class="fas fa-book" style="color:white;font-size:20px;"></i>
+        </div>
+        <div style="font-size:15px;font-weight:700;color:#701a75;margin-bottom:6px;">Bibliothèque</div>
+        <div style="font-size:12px;color:#a21caf;line-height:1.5;">
+          Catalogue, prêts, retours, gestion du fonds
+        </div>
+        <div style="margin-top:12px;font-size:10px;color:#e879f9;font-weight:600;text-transform:uppercase;letter-spacing:1px;">
+          <i class="fas fa-toggle-on"></i> Module optionnel
+        </div>
+      </div>
+
+      <!-- Communications -->
+      <div class="module-card" style="background:#f0f9ff;border:1px solid #bae6fd;">
+        <div style="width:44px;height:44px;background:#0284c7;border-radius:10px;
+                    display:flex;align-items:center;justify-content:center;margin-bottom:14px;">
+          <i class="fas fa-envelope" style="color:white;font-size:20px;"></i>
+        </div>
+        <div style="font-size:15px;font-weight:700;color:#0c4a6e;margin-bottom:6px;">Communications</div>
+        <div style="font-size:12px;color:#0284c7;line-height:1.5;">
+          Messagerie interne, notifications parents, SMS
+        </div>
+        <div style="margin-top:12px;font-size:10px;color:#7dd3fc;font-weight:600;text-transform:uppercase;letter-spacing:1px;">
+          <i class="fas fa-toggle-on"></i> Module optionnel
+        </div>
+      </div>
+
+      <!-- Documents -->
+      <div class="module-card" style="background:#f8fafc;border:1px solid #e2e8f0;">
+        <div style="width:44px;height:44px;background:#334155;border-radius:10px;
+                    display:flex;align-items:center;justify-content:center;margin-bottom:14px;">
+          <i class="fas fa-file-pdf" style="color:white;font-size:20px;"></i>
+        </div>
+        <div style="font-size:15px;font-weight:700;color:#0f172a;margin-bottom:6px;">Documents PDF</div>
+        <div style="font-size:12px;color:#475569;line-height:1.5;">
+          Bulletins, certificats, attestations en PDF
+        </div>
+        <div style="margin-top:12px;font-size:10px;color:#94a3b8;font-weight:600;text-transform:uppercase;letter-spacing:1px;">
+          <i class="fas fa-check-circle"></i> Module essentiel
+        </div>
+      </div>
+
+      <!-- Reports -->
+      <div class="module-card" style="background:#f8fafc;border:1px solid #e2e8f0;">
+        <div style="width:44px;height:44px;background:#1e40af;border-radius:10px;
+                    display:flex;align-items:center;justify-content:center;margin-bottom:14px;">
+          <i class="fas fa-chart-bar" style="color:white;font-size:20px;"></i>
+        </div>
+        <div style="font-size:15px;font-weight:700;color:#0f172a;margin-bottom:6px;">Rapports</div>
+        <div style="font-size:12px;color:#475569;line-height:1.5;">
+          Statistiques, exports Excel, tableaux de bord
+        </div>
+        <div style="margin-top:12px;font-size:10px;color:#94a3b8;font-weight:600;text-transform:uppercase;letter-spacing:1px;">
+          <i class="fas fa-check-circle"></i> Module essentiel
+        </div>
+      </div>
+
+      <!-- Transport + Hostel -->
+      <div class="module-card" style="background:#f8fafc;border:1px dashed #cbd5e1;">
+        <div style="display:flex;gap:10px;margin-bottom:14px;">
+          <div style="width:32px;height:32px;background:#64748b;border-radius:8px;
+                      display:flex;align-items:center;justify-content:center;">
+            <i class="fas fa-bus" style="color:white;font-size:14px;"></i>
+          </div>
+          <div style="width:32px;height:32px;background:#64748b;border-radius:8px;
+                      display:flex;align-items:center;justify-content:center;">
+            <i class="fas fa-bed" style="color:white;font-size:14px;"></i>
+          </div>
+        </div>
+        <div style="font-size:15px;font-weight:700;color:#374151;margin-bottom:6px;">Transport & Internat</div>
+        <div style="font-size:12px;color:#6b7280;line-height:1.5;">
+          Circuits scolaires, gestion de l'internat
+        </div>
+        <div style="margin-top:12px;font-size:10px;color:#9ca3af;font-weight:600;text-transform:uppercase;letter-spacing:1px;">
+          <i class="fas fa-clock"></i> Bientôt disponible
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════════════ TECHNO ══ -->
+  <div style="margin:0 70px;background:linear-gradient(135deg,#0f172a,#1e293b);
+               border-radius:24px;padding:50px;margin-bottom:50px;">
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;">
+      <div>
+        <div class="badge" style="background:rgba(99,102,241,0.2);border:1px solid rgba(99,102,241,0.3);
+                                   color:#a5b4fc;margin-bottom:20px;">
+          <i class="fas fa-code"></i> Stack Technique
+        </div>
+        <h3 style="font-size:32px;font-weight:800;color:white;letter-spacing:-0.5px;margin:0 0 14px;">
+          Technologies modernes<br>et éprouvées
+        </h3>
+        <p style="font-size:14px;color:#94a3b8;line-height:1.7;margin:0 0 30px;">
+          Construit sur des bases solides pour garantir performance,
+          sécurité et évolutivité à long terme.
+        </p>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
+          <div style="background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.08);
+                      border-radius:10px;padding:14px 16px;display:flex;align-items:center;gap:10px;">
+            <div style="color:#f97316;font-size:20px;">🐍</div>
+            <div>
+              <div style="color:white;font-size:12px;font-weight:700;">Python / Flask 3.1</div>
+              <div style="color:#64748b;font-size:10px;">Backend robuste</div>
+            </div>
+          </div>
+          <div style="background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.08);
+                      border-radius:10px;padding:14px 16px;display:flex;align-items:center;gap:10px;">
+            <div style="color:#10b981;font-size:20px;">🗃</div>
+            <div>
+              <div style="color:white;font-size:12px;font-weight:700;">PostgreSQL</div>
+              <div style="color:#64748b;font-size:10px;">Base de données</div>
+            </div>
+          </div>
+          <div style="background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.08);
+                      border-radius:10px;padding:14px 16px;display:flex;align-items:center;gap:10px;">
+            <div style="color:#a78bfa;font-size:20px;">⚡</div>
+            <div>
+              <div style="color:white;font-size:12px;font-weight:700;">HTMX + Alpine.js</div>
+              <div style="color:#64748b;font-size:10px;">UI réactive</div>
+            </div>
+          </div>
+          <div style="background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.08);
+                      border-radius:10px;padding:14px 16px;display:flex;align-items:center;gap:10px;">
+            <div style="color:#38bdf8;font-size:20px;">🎨</div>
+            <div>
+              <div style="color:white;font-size:12px;font-weight:700;">TailwindCSS</div>
+              <div style="color:#64748b;font-size:10px;">Design system</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Features list -->
+      <div>
+        <div style="display:flex;flex-direction:column;gap:16px;">
+          <div style="display:flex;align-items:flex-start;gap:14px;">
+            <div style="width:36px;height:36px;background:rgba(16,185,129,0.15);border:1px solid rgba(16,185,129,0.3);
+                        border-radius:8px;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+              <i class="fas fa-shield-alt" style="color:#10b981;font-size:14px;"></i>
+            </div>
+            <div>
+              <div style="color:white;font-size:14px;font-weight:700;margin-bottom:3px;">Sécurité multi-tenant</div>
+              <div style="color:#64748b;font-size:12px;line-height:1.5;">Isolation totale des données par établissement. RBAC granulaire par rôle et permission.</div>
+            </div>
+          </div>
+          <div style="display:flex;align-items:flex-start;gap:14px;">
+            <div style="width:36px;height:36px;background:rgba(99,102,241,0.15);border:1px solid rgba(99,102,241,0.3);
+                        border-radius:8px;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+              <i class="fas fa-mobile-alt" style="color:#818cf8;font-size:14px;"></i>
+            </div>
+            <div>
+              <div style="color:white;font-size:14px;font-weight:700;margin-bottom:3px;">100% Responsive</div>
+              <div style="color:#64748b;font-size:12px;line-height:1.5;">Interface adaptée à tous les écrans — ordinateur, tablette et mobile.</div>
+            </div>
+          </div>
+          <div style="display:flex;align-items:flex-start;gap:14px;">
+            <div style="width:36px;height:36px;background:rgba(251,191,36,0.15);border:1px solid rgba(251,191,36,0.3);
+                        border-radius:8px;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+              <i class="fas fa-file-pdf" style="color:#fbbf24;font-size:14px;"></i>
+            </div>
+            <div>
+              <div style="color:white;font-size:14px;font-weight:700;margin-bottom:3px;">Génération PDF automatique</div>
+              <div style="color:#64748b;font-size:12px;line-height:1.5;">Bulletins, attestations et certificats générés automatiquement avec le logo de l'école.</div>
+            </div>
+          </div>
+          <div style="display:flex;align-items:flex-start;gap:14px;">
+            <div style="width:36px;height:36px;background:rgba(236,72,153,0.15);border:1px solid rgba(236,72,153,0.3);
+                        border-radius:8px;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+              <i class="fas fa-brain" style="color:#f472b6;font-size:14px;"></i>
+            </div>
+            <div>
+              <div style="color:white;font-size:14px;font-weight:700;margin-bottom:3px;">Calculs automatiques</div>
+              <div style="color:#64748b;font-size:12px;line-height:1.5;">Moyennes pondérées, classements, mentions et bulletins calculés instantanément.</div>
+            </div>
+          </div>
+          <div style="display:flex;align-items:flex-start;gap:14px;">
+            <div style="width:36px;height:36px;background:rgba(20,184,166,0.15);border:1px solid rgba(20,184,166,0.3);
+                        border-radius:8px;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+              <i class="fas fa-puzzle-piece" style="color:#2dd4bf;font-size:14px;"></i>
+            </div>
+            <div>
+              <div style="color:white;font-size:14px;font-weight:700;margin-bottom:3px;">Modules activables à la carte</div>
+              <div style="color:#64748b;font-size:12px;line-height:1.5;">Activez uniquement les modules dont vous avez besoin. Désactivez en un clic.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════════════ FOOTER ══ -->
+  <div style="background:#0f172a;padding:40px 70px;margin:0;">
+    <div style="display:flex;justify-content:space-between;align-items:center;">
+      <div style="display:flex;align-items:center;gap:14px;">
+        <div style="width:42px;height:42px;background:rgba(255,255,255,0.1);border-radius:10px;
+                    display:flex;align-items:center;justify-content:center;">
+          <i class="fas fa-graduation-cap" style="color:#fbbf24;font-size:20px;"></i>
+        </div>
+        <div>
+          <div style="color:white;font-size:18px;font-weight:800;">EduManager ERP</div>
+          <div style="color:#475569;font-size:12px;">Next Generation School Management</div>
+        </div>
+      </div>
+      <div style="text-align:center;">
+        <div style="color:#6366f1;font-size:13px;font-weight:600;margin-bottom:4px;">
+          <i class="fas fa-envelope"></i> clubcodinggonaives@gmail.com
+        </div>
+        <div style="color:#475569;font-size:12px;">Côte d'Ivoire • Afrique de l'Ouest</div>
+      </div>
+      <div style="text-align:right;">
+        <div style="color:#64748b;font-size:12px;margin-bottom:6px;">Construit avec</div>
+        <div style="display:flex;gap:8px;align-items:center;justify-content:flex-end;">
+          <span style="background:#1e293b;color:#94a3b8;font-size:11px;padding:4px 8px;border-radius:6px;">Flask 3.1</span>
+          <span style="background:#1e293b;color:#94a3b8;font-size:11px;padding:4px 8px;border-radius:6px;">SQLAlchemy 2.x</span>
+          <span style="background:#1e293b;color:#94a3b8;font-size:11px;padding:4px 8px;border-radius:6px;">PostgreSQL</span>
+        </div>
+      </div>
+    </div>
+    <div style="border-top:1px solid #1e293b;margin-top:30px;padding-top:20px;
+                display:flex;justify-content:space-between;align-items:center;">
+      <div style="color:#334155;font-size:11px;">© 2025 EduManager ERP — Tous droits réservés</div>
+      <div style="display:flex;gap:16px;">
+        <span style="background:#1e293b;border-radius:6px;padding:4px 10px;font-size:11px;color:#6366f1;font-weight:600;">v2.0.0</span>
+        <span style="background:#1e293b;border-radius:6px;padding:4px 10px;font-size:11px;color:#10b981;font-weight:600;">Production Ready</span>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+</body>
+</html>
